@@ -1,5 +1,5 @@
 # Spring-vue/Marketplace
-+ ## 구현 도구들
++ ## 구현 도구들(Build tools)
   + Unit test : @vue/cli - Jest
   + e2e test : @vue/cli - Nightwatch
   + Database : Ojdbc6(XE)
@@ -10,6 +10,6 @@
   + Communication ports: 3000(Front)<->8090(Back)
   + Spring Dependencies: JPA, Web, DevTools, Thymeleaf(?maybe), RESTful, Security, Transaction(?maybe), Oauth2(미구현)
   + Build: Maven 3.6.3
-  + 기타 dependencies : vuelidate, hibernate, .. ORM mapping 쪽은 별도 브랜치로 분류 (mybatis 등)
-  + 기타 : Ojdbc외 postgreSQL, Mysql, (+H2 DB)까지 별도 브랜치 목표, .. boot가 아닌 legacy로 제작까지
-## bashpound: 장은학 / eunhackjang@gmail.com
+  + 기타(etc) dependencies : vuelidate, hibernate, .. ORM mapping 쪽은 별도 브랜치로 분류 (mybatis 등)
+  + 기타(etc) : Ojdbc외 postgreSQL, Mysql, (+H2 DB)까지 별도 브랜치 목표, .. boot가 아닌 legacy로 제작까지
+## bashpound: 장은학(Jang Eunhack) / eunhackjang@gmail.com
