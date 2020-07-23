@@ -2,6 +2,7 @@
 + ## 구현 도구들(Build tools)
   + Unit test : @vue/cli - Jest
   + e2e test : @vue/cli - Nightwatch
+  + ES5-6 compatibility module: @vue/cli ESlint  
   + Database : Ojdbc6(XE)
   + Front server : Node.js (12.18.0)
   + Front design: (Vue.js)@vue/cli 4.4.6, Bootstrap(4.5.1), SCSS, inline CSS
