@@ -1,5 +1,5 @@
 # Spring-vue/Marketplace
-+ ## 구동 필요 요건
++ ## 구현 도구들
   + Unit test : @vue/cli - Jest
   + e2e test : @vue/cli - Nightwatch
   + Database : Ojdbc6(XE)
