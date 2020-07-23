@@ -26,12 +26,12 @@
       </div>
     </div>
     <footer class="footer">
-      <span class="copyright">&copy; 2018 TaskAgile.com</span>
+      <span class="copyright">&copy; 2020 Bashpound</span>
       <ul class="footer-links list-inline float-right">
         <li class="list-inline-item"><a href="#">About</a></li>
         <li class="list-inline-item"><a href="#">Terms of Service</a></li>
         <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
-        <li class="list-inline-item"><a href="https://github.com/taskagile/vuejs.spring-boot.mysql" target="_blank">GitHub</a></li>
+        <li class="list-inline-item"><a href="https://github.com/bashpound" target="_blank">GitHub</a></li>
       </ul>
     </footer>
   </div>
