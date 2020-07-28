@@ -10,12 +10,13 @@
   + 모든 개별 페이지는 VueRouter 혹은 Layered popup으로 처리한다. (Http redirection is not allowed)
   + JQuery는 (원칙적으로) 쓰지 않는다.
   + 로고 및 아이콘 요소는 svg 만을 사용한다.
+  + 모든 Framework, API는 가능하면 최신 버전을 사용한다.
 
 + ## 구현 도구들(Build tools)
-  + Unit test : @vue/cli - Jest
-  + e2e test : @vue/cli - Nightwatch
-  + ES5-6 compatibility module: @vue/cli ESlint  
-  + Database : Ojdbc6(XE)
+  + Unit test : JEST
+  + e2e test : Nightwatch
+  + ES5-6 compatibility module: ESlint  
+  + Database : Ojdbc6 XE 
   + Front: Node.js (12.18.0)
   + Front design: (Vue.js)@vue/cli 4.4.6, BootstrapVue(4.5.1), SCSS, inline CSS
   + Back server : Embedded Tomcat on springBoot
