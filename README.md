@@ -29,6 +29,7 @@
   + 기타(etc) dependencies : vuelidate, hibernate, .. ORM mapping 쪽은 별도 브랜치로 분류 (mybatis 등)
   
 + ## Target issues
+  + 반응형 navigation 구현 중
   + Ojdbc외 postgreSQL, Mysql, (+H2 DB) migration
   + Spring-boot -> Spring Legacy pjt migration
   + React.js branch
