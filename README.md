@@ -8,9 +8,9 @@
 + ## 개발 원칙 (Dev principles)
   + Spring MVC는 오직 파싱 대상 JSON dataset만 반환한다. (RESTful)
   + 모든 개별 페이지는 VueRouter 혹은 Layered popup으로 처리한다. (Http redirection is not allowed)
-  + JQuery는 (원칙적으로) 쓰지 않는다.
-  + 로고 및 아이콘 요소는 svg 만을 사용한다.
-  + 모든 Framework, API는 가능하면 최신 버전을 사용한다.
+  + JQuery는 (원칙적으로) 쓰지 않는다. (No JQuery AMAP)
+  + 로고 및 아이콘 요소는 svg 만을 사용한다. (imaging svg is highly recommended)
+  + 모든 Framework, API는 가능하면 최신 버전을 사용한다. (API concurrency is highly recommended)
 
 + ## 구현 도구들(Build tools)
   + Unit test : JEST
