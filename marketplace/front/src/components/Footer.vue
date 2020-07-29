@@ -1,6 +1,5 @@
 <template>
-  <v-footer>
-    <v-container>
+  <v-footer :padless=true>
     <link rel="stylesheet" href="https://use.fontawesome.com/ccef0795ca.css" />
     <div class="row py-5">
       <div class="col-6 col-md">
@@ -88,7 +87,6 @@
         <a href="http://bashpound.github.io/portfolio">Bashpound</a>
       </div>
     </div>
-    </v-container>
   </v-footer>
 </template>
 

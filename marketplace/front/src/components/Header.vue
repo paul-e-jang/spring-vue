@@ -1,6 +1,6 @@
 <template>
   <div class="row border-bottom">
-    <div class="col-xl-2 align-self-center py-5 border">
+    <div class="col-xl-2 align-self-center py-3 border">
       <img src="../assets/svcLogoWithoutFrames.svg" class="img-fluid" alt="Logo" width="200" height="100"/>
     </div>
     <div class="col-xl-6 mx-auto text-center border my-auto">

@@ -1,9 +1,9 @@
 <template>
   <ul class="nav float-right">
 
-    <li><router-link to="/" class="text-dark"><i class="fa fa-home fa-2x" aria-hidden="true"></i></router-link></li>
-    <li><router-link to="/about" class="text-dark"><i class="fa fa-info-circle fa-2x" aria-hidden="true"></i></router-link> </li>
-    <li><router-link to="/loginpage" class="text-dark"><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i></router-link> </li>
+    <li><router-link to="/" class="text-dark mr-3"><i class="fa fa-home fa-2x" aria-hidden="true"></i></router-link></li>
+    <li><router-link to="/about" class="text-dark mr-3"><i class="fa fa-info-circle fa-2x" aria-hidden="true"></i></router-link> </li>
+    <li><router-link to="/loginpage" class="text-dark mr-3"><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i></router-link> </li>
     <li>
       <a class="text-dark mr-3" rel="nofollow" href="#" title="MyPage">
         <i class="fa fa-user-o fa-2x"></i>
