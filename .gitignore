@@ -5,6 +5,7 @@ marketplace/.mvn/wrapper
 marketplace/.settings
 marketplace/mvnw
 marketplace/mvnw.cmd
+marketplace/target/classes/META-INF/
 
 /tests/e2e/reports/
 selenium-debug.log
@@ -29,6 +30,3 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
-
-marketplace/target/classes/META-INF/
-
