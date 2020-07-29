@@ -33,3 +33,5 @@ pnpm-debug.log*
 *.sw?
 mvnw
 mvnw.cmd
+marketplace/target/classes/META-INF/build-info.properties
+marketplace/target/classes/META-INF/build-info.properties
