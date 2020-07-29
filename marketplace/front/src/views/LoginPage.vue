@@ -2,7 +2,7 @@
   <div class="login">
   <form class="form-signin">
     <div class="text-center mb-4">
-      <img class="mb-4" src="../assets/svcLogoWithoutFrames.svg" alt="" width="200" height="100">
+      <img class="mb-4" src="../assets/svcLogoWithoutFrames.svg" alt="" width="400" height="200">
       <h1 class="h3 mb-3 font-weight-normal">로그인</h1>
       <!--
       <p>Build form controls with floating labels via the <code>:placeholder-shown</code> pseudo-element. <a

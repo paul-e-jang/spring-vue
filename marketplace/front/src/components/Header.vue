@@ -1,7 +1,7 @@
 <template>
   <div class="row bg-white">
-    <div class="col-xl-2 align-self-center py-5">
-      <img src="../assets/svcLogoWithoutFrames.svg" class="img-fluid" alt="Logo" width="200" height="100"/>
+    <div class="col-xl-2 align-self-center">
+      <img src="../assets/svcLogoWithoutFrames.svg" class="img-fluid" alt="Responsive image" />
     </div>
     <div class="col-xl-6 align-self-center text-center">
       <SearchBar />
@@ -9,7 +9,28 @@
     <div class="col-xl-3 align-right align-self-center">
       <UserMenu />
     </div>
-      <Categories />
+
+    <nav class="navbar navbar-expand-sm">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+          </button>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">메뉴1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">메뉴2</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">메뉴3</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">메뉴4</a>
+        </li>
+      </ul>
+
       <div id="nav">
         <router-link to="/">Home</router-link> |
         <router-link to="/about">About</router-link> |
@@ -21,6 +42,7 @@
         <button class="btn btn-success my-2 my-sm-0" type="button">Search</button>
          </form>
       -->
+    </nav>
   </div>
 </template>
 
@@ -33,7 +55,7 @@
     color: #2c3e50;
 
     &.router-link-exact-active {
-      color: #4272b9;
+      color: #42b983;
     }
   }
 }
@@ -42,13 +64,11 @@
 <script>
 import SearchBar from '@/components/SearchBar.vue'
 import UserMenu from '@/components/UserMenu.vue'
-import Categories from '@/components/Categories.vue'
 export default {
   name: 'Header',
   components: {
     SearchBar,
-    UserMenu,
-    Categories
+    UserMenu
   }
 }
 </script>
