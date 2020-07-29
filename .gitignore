@@ -30,6 +30,5 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
-marketplace/target/classes/META-INF/build-info.properties
-marketplace/target/classes/META-INF/build-info.properties
+marketplace/target/classes/META-INF/
 
