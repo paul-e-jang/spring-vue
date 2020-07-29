@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: bashpound.portfolio.marketplace.MarketplaceApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.9 s - in bashpound.portfolio.marketplace.MarketplaceApplicationTests
