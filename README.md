@@ -1,4 +1,4 @@
-![Snapshot](https://github.com/bashpound/spring-vue/blob/home/snapshot-xl.PNG)
+![Snapshot](snapshot-xl.PNG)
 
 # Spring-vue/Marketplace
 + ## 프로젝트 설명(Project Header)
