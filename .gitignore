@@ -1,6 +1,6 @@
 .DS_Store
 marketplace/front/node_modules
-/dist
+marketplace/front/dist
 
 /tests/e2e/reports/
 selenium-debug.log
