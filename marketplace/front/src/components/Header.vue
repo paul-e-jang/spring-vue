@@ -1,20 +1,18 @@
 <template>
-  <div class="row bg-white">
-    <div class="col-xl-2 align-self-center py-5">
+  <div class="row border-bottom">
+    <div class="col-xl-2 align-self-center py-5 border">
       <img src="../assets/svcLogoWithoutFrames.svg" class="img-fluid" alt="Logo" width="200" height="100"/>
     </div>
-    <div class="col-xl-6 align-self-center text-center">
+    <div class="col-xl-6 mx-auto text-center border my-auto">
       <SearchBar />
     </div>
-    <div class="col-xl-3 align-right align-self-center">
+    <div class="col-xl-3 mx-auto my-auto border">
       <UserMenu />
     </div>
-      <Categories />
-      <div id="nav">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link> |
-        <router-link to="/loginpage">Login</router-link>
+      <Categories id="categories" class="border"/>
+      <div class="nav border my-auto">
       </div>
+        <BreadCrumbs class="col-12 border py-0"/>
       <!-- form 작성용
         <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="text" placeholder="Search">
@@ -43,12 +41,15 @@
 import SearchBar from '@/components/SearchBar.vue'
 import UserMenu from '@/components/UserMenu.vue'
 import Categories from '@/components/Categories.vue'
+import BreadCrumbs from '@/components/BreadCrumbs.vue'
+
 export default {
   name: 'Header',
   components: {
     SearchBar,
     UserMenu,
-    Categories
+    Categories,
+    BreadCrumbs
   }
 }
 </script>

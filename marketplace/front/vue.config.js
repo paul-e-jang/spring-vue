@@ -1,8 +1,7 @@
-module.exports ={
-  devServer:{
+module.exports = {
+  devServer: {
     port: 3000
   },
-
   configureWebpack: {
     entry: {
       app: './src/main.js',
@@ -10,5 +9,8 @@ module.exports ={
         'bootstrap/dist/css/bootstrap.min.css'
       ]
     }
-  }
+  },
+  transpileDependencies: [
+    'vuetify'
+  ]
 }
