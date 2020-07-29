@@ -1,12 +1,10 @@
-marketplace/front/node_modules/
-.DS_Store
 
+marketplace/front/node_modules
+marketplace/front/dist
 marketplace/.mvn/wrapper
 marketplace/.settings
 marketplace/mvnw
 marketplace/mvnw.cmd
-marketplace/front/node_modules
-marketplace/front/dist
 
 /tests/e2e/reports/
 selenium-debug.log
@@ -31,7 +29,7 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
-mvnw
-mvnw.cmd
+
 marketplace/target/classes/META-INF/build-info.properties
 marketplace/target/classes/META-INF/build-info.properties
+
