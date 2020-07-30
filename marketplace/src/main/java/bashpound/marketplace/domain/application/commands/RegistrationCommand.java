@@ -1,4 +1,4 @@
-package bashpound.marketplace;
+package bashpound.marketplace.domain.application.commands;
 
 import org.springframework.util.Assert;
 

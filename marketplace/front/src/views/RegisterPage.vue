@@ -38,7 +38,7 @@
           </div>
           <button type="submit" class="btn btn-primary btn-block">계정 생성</button>
           <p class="accept-terms text-muted">“계정 생성”을 누르면 <a href="#">약관</a> 및 <a href="#">개인 정보 보호정책</a>에 동의합니다.</p>
-          <p class="text-center text-muted">이미 계정이 있으십니까? <a href="/loginpage">로그인</a></p>
+          <p class="text-center text-muted">이미 계정이 있으십니까? <router-link to="/loginpage">로그인</router-link></p>
         </form>
       </div>
     </div>
