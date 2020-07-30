@@ -8,13 +8,13 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "user")
+@Table(name = "u")
 public class User extends AbstractBaseEntity {
 
   private static final long serialVersionUID = -538781580460070724L;
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
 
   @Column(name = "username", nullable = false, length = 50, unique = true)

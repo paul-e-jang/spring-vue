@@ -13,7 +13,7 @@
             <input type="text" class="form-control" id="username" v-model="form.username">
             <div class="field-error" v-if="$v.form.username.$dirty">
               <div class="error" v-if="!$v.form.username.required">아이디를 입력하세요.</div>
-              <div class="error" v-if="!$v.form.username.alphaNum">특수문자는 입력할 수 없습니다.</div>
+              <div class="error" v-if="!$v.form.username.alphaNum">아이디는 영문 대, 소문자 및 숫자로 입력하세요.</div>
               <div class="error" v-if="!$v.form.username.minLength">아이디는 최소 {{$v.form.username.$params.minLength.min}} 글자입니다.</div>
               <div class="error" v-if="!$v.form.username.maxLength">아이디는 최대 {{$v.form.username.$params.maxLength.max}} 글자입니다.</div>
             </div>
