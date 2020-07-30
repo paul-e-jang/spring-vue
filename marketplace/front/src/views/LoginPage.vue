@@ -10,13 +10,13 @@
     </div>
 
     <div class="form-label-group">
-      <input type="text" id="inputEmail" class="form-control" placeholder="아이디" required autofocus>
-      <label for="inputEmail">아이디</label>
+      <input type="text" id="Id" class="form-control" placeholder="아이디" required autofocus>
+      <label for="Id">아이디</label>
     </div>
 
     <div class="form-label-group">
-      <input type="password" id="inputPassword" class="form-control" placeholder="비밀번호" required>
-      <label for="inputPassword">비밀번호</label>
+      <input type="password" id="Pass" class="form-control" placeholder="비밀번호" required>
+      <label for="Pass">비밀번호</label>
     </div>
 
     <div class="checkbox mb-3">
@@ -25,6 +25,7 @@
       </label>
     </div>
     <button class="btn btn-lg btn-info btn-block mb-3 login_btn" type="submit">로그인</button>
+    <p v-if="error" class="error">로그인에 실패하였습니다.</p>
     <ul class="nav justify-content-center">
       <li class="nav-item">
         <a class="nav-link" href="#">아이디 찾기</a>

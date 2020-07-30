@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import vuetify from './plugins/vuetify'
+import Vuelidate from 'vuelidate'
 /*
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -11,6 +12,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 */
 
 // axios bootstrap
+
+Vue.use(Vuelidate)
+Vue.use(vuetify)
 
 axios.defaults.baseURL = '/api'
 axios.defaults.headers.common.Accept = 'application/json'
