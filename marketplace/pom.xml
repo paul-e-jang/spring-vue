@@ -23,7 +23,6 @@
     <p6spy.version>3.7.0</p6spy.version>
     <aws-s3.version>1.11.409</aws-s3.version>
     <javax.interceptor.version>1.2</javax.interceptor.version>
-    <codehaus.version>1.6.0</codehaus.version>
   </properties>
 
   <repositories>
@@ -221,7 +220,7 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
-            <version>${codehaus.version}</version>
+            <version>1.6.0</version>
             <executions>
               <execution>
                 <id>front-end local-e2e test</id>
@@ -266,6 +265,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
+        <version>1.6.0</version>
         <executions>
           <execution>
             <id>front-end install</id>

@@ -7,6 +7,7 @@ META-INF\spring-configuration-metadata.json
 bashpound\marketplace\domain\application\impl\UserServiceImpl.class
 bashpound\marketplace\web\apis\authenticate\SimpleLogoutSuccessHandler.class
 bashpound\marketplace\config\SecurityConfiguration.class
+bashpound\marketplace\domain\model\user\Users.class
 bashpound\marketplace\web\apis\authenticate\AuthenticationFilter$LoginRequest.class
 bashpound\marketplace\domain\model\user\UserRegisteredEventHandler.class
 bashpound\marketplace\web\apis\authenticate\SimpleAuthenticationSuccessHandler.class
