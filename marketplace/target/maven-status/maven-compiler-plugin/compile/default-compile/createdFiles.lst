@@ -24,7 +24,6 @@ bashpound\marketplace\web\results\Result.class
 bashpound\marketplace\domain\common\mail\MessageVariable.class
 bashpound\marketplace\web\payload\RegistrationPayload.class
 bashpound\marketplace\domain\common\event\DefaultDomainEventPublisher.class
-bashpound\marketplace\domain\model\user\User.class
 bashpound\marketplace\MarketplaceApplication.class
 bashpound\marketplace\domain\common\event\DomainEvent.class
 bashpound\marketplace\web\apis\authenticate\AuthenticationFilter.class

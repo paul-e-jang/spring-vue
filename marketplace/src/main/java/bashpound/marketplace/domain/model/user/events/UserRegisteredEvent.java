@@ -3,22 +3,22 @@ package bashpound.marketplace.domain.model.user.events;
 import org.springframework.util.Assert;
 
 import bashpound.marketplace.domain.common.event.DomainEvent;
-import bashpound.marketplace.domain.model.user.User;
+import bashpound.marketplace.domain.model.user.Users;
 
 public class UserRegisteredEvent extends DomainEvent {
 
   private static final long serialVersionUID = 2580061707540917880L;
 
-  private User user;
+  private Users users;
 
-  public UserRegisteredEvent(User user) {
-    super(user);
-    Assert.notNull(user, "Parameter `user` must not be null");
-    this.user = user;
+  public UserRegisteredEvent(Users users) {
+    super(users);
+    Assert.notNull(users, "Parameter `user` must not be null");
+    this.users = users;
   }
 
-  public User getUser() {
-    return this.user;
+  public Users getUser() {
+    return this.users;
   }
 
   public boolean equals(Object o) {
@@ -26,16 +26,16 @@ public class UserRegisteredEvent extends DomainEvent {
     if (o == null || getClass() != o.getClass()) return false;
 
     UserRegisteredEvent that = (UserRegisteredEvent) o;
-    return that.user.equals(this.user);
+    return that.users.equals(this.users);
   }
 
   public int hashCode() {
-    return this.user.hashCode();
+    return this.users.hashCode();
   }
 
   public String toString() {
     return "UserRegisteredEvent{" +
-      "user='" + user + '\'' +
+      "user='" + users + '\'' +
       "timestamp='" + getTimestamp() + '\'' +
       '}';
   }

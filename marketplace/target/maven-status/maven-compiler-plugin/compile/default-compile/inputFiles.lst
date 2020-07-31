@@ -25,11 +25,11 @@ C:\Users\admin\Desktop\spring-vue\marketplace\src\main\java\bashpound\marketplac
 C:\Users\admin\Desktop\spring-vue\marketplace\src\main\java\bashpound\marketplace\web\apis\RegistrationApiController.java
 C:\Users\admin\Desktop\spring-vue\marketplace\src\main\java\bashpound\marketplace\domain\model\user\events\UserRegisteredEvent.java
 C:\Users\admin\Desktop\spring-vue\marketplace\src\main\java\bashpound\marketplace\web\apis\authenticate\SimpleLogoutSuccessHandler.java
+C:\Users\admin\Desktop\spring-vue\marketplace\src\main\java\bashpound\marketplace\domain\model\user\Users.java
 C:\Users\admin\Desktop\spring-vue\marketplace\src\main\java\bashpound\marketplace\web\payload\RegistrationPayload.java
 C:\Users\admin\Desktop\spring-vue\marketplace\src\main\java\bashpound\marketplace\MarketplaceApplication.java
 C:\Users\admin\Desktop\spring-vue\marketplace\src\main\java\bashpound\marketplace\web\apis\authenticate\SimpleAuthenticationFailureHandler.java
 C:\Users\admin\Desktop\spring-vue\marketplace\src\main\java\bashpound\marketplace\domain\common\mail\MessageVariable.java
 C:\Users\admin\Desktop\spring-vue\marketplace\src\main\java\bashpound\marketplace\web\apis\authenticate\SimpleAuthenticationSuccessHandler.java
 C:\Users\admin\Desktop\spring-vue\marketplace\src\main\java\bashpound\marketplace\domain\model\user\UsernameExistsException.java
-C:\Users\admin\Desktop\spring-vue\marketplace\src\main\java\bashpound\marketplace\domain\model\user\User.java
 C:\Users\admin\Desktop\spring-vue\marketplace\src\main\java\bashpound\marketplace\web\pages\MainController.java

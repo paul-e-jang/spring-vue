@@ -10,7 +10,7 @@ import bashpound.marketplace.domain.common.mail.MailManager;
 import bashpound.marketplace.domain.common.mail.MessageVariable;
 import bashpound.marketplace.domain.model.user.RegistrationException;
 import bashpound.marketplace.domain.model.user.RegistrationManagement;
-import bashpound.marketplace.domain.model.user.User;
+import bashpound.marketplace.domain.model.user.Users;
 import bashpound.marketplace.domain.model.user.events.UserRegisteredEvent;
 
 import javax.transaction.Transactional;
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
   @Override
   public void register(RegistrationCommand command) throws RegistrationException {
     Assert.notNull(command, "Parameter `command` must not be null");
-    User newUser = registrationManagement.register(
+    Users newUser = registrationManagement.register(
       command.getUsername(),
       command.getEmailAddress(),
       command.getPassword());
@@ -43,12 +43,12 @@ public class UserServiceImpl implements UserService {
     domainEventPublisher.publish(new UserRegisteredEvent(newUser));
   }
 
-  private void sendWelcomeMessage(User user) {
+  private void sendWelcomeMessage(Users users) {
     mailManager.send(
-      user.getEmailAddress(),
+      users.getEmailAddress(),
       "Welcome to Bashpound Marketplace",
       "welcome.ftl",
-      MessageVariable.from("user", user)
+      MessageVariable.from("user", users)
     );
   }
 }

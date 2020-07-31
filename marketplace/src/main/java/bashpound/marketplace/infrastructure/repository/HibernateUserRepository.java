@@ -3,7 +3,7 @@ package bashpound.marketplace.infrastructure.repository;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
-import bashpound.marketplace.domain.model.user.User;
+import bashpound.marketplace.domain.model.user.Users;
 import bashpound.marketplace.domain.model.user.UserRepository;
 
 import javax.persistence.EntityManager;
@@ -16,22 +16,22 @@ public class HibernateUserRepository extends HibernateSupport implements UserRep
   }
 
   @Override
-  public User findByUsername(String username) {
-    Query<User> query = getSession().createQuery("from u where username = :username", User.class);
+  public Users findByUsername(String username) {
+    Query<Users> query = getSession().createQuery("from Users where username = :username", Users.class);
     query.setParameter("username", username);
     return query.uniqueResult();
   }
 
   @Override
-  public User findByEmailAddress(String emailAddress) {
-    Query<User> query = getSession().createQuery("from u where emailAddress = :emailAddress", User.class);
+  public Users findByEmailAddress(String emailAddress) {
+    Query<Users> query = getSession().createQuery("from Users where emailAddress = :emailAddress", Users.class);
     query.setParameter("emailAddress", emailAddress);
     return query.uniqueResult();
   }
 
   @Override
-  public void save(User user) {
-    entityManager.persist(user);
+  public void save(Users users) {
+    entityManager.persist(users);
     entityManager.flush();
   }
 }
