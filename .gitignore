@@ -5,7 +5,7 @@ marketplace/.mvn/wrapper
 marketplace/.settings
 marketplace/mvnw
 marketplace/mvnw.cmd
-marketplace/target/
+marketplace/target
 
 /tests/e2e/reports/
 selenium-debug.log
