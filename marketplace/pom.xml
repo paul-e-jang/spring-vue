@@ -26,11 +26,25 @@
     <codehaus.version>1.6.0</codehaus.version>
   </properties>
 
+  <repositories>
+    <repository>
+      <id>HandChina RDC</id>
+         <url>http://nexus.saas.hand-china.com/content/repositories/rdc/</url>
+      </repository>
+  </repositories>
+
+
   <dependencies>
+<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc7 -->
 <dependency>
-    <groupId>com.oracle.database.jdbc</groupId>
-    <artifactId>ojdbc10</artifactId>
+    <groupId>com.oracle</groupId>
+    <artifactId>ojdbc7</artifactId>
+    <version>12.1.0.2</version>
+
 </dependency>
+
+
+
 
 
     <dependency>
