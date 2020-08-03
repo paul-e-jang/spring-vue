@@ -1,7 +1,7 @@
 <template>
   <div class="row border-bottom">
     <div class="col-xl-2 align-self-center py-3 border">
-      <img src="../assets/svcLogoWithoutFrames.svg" class="img-fluid" alt="Logo" width="200" height="100"/>
+      <Logo />
     </div>
     <div class="col-xl-6 mx-auto text-center border my-auto">
       <SearchBar />
@@ -42,6 +42,7 @@ import SearchBar from '@/components/SearchBar.vue'
 import UserMenu from '@/components/UserMenu.vue'
 import Categories from '@/components/Categories.vue'
 import BreadCrumbs from '@/components/BreadCrumbs.vue'
+import Logo from '@/components/Logo.vue'
 
 export default {
   name: 'Header',
@@ -49,7 +50,8 @@ export default {
     SearchBar,
     UserMenu,
     Categories,
-    BreadCrumbs
+    BreadCrumbs,
+    Logo
   }
 }
 </script>

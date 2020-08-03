@@ -2,7 +2,7 @@ package bashpound.marketplace.domain.model.user;
 
 import javax.persistence.*;
 
-import bashpound.marketplace.domain.common.model.AbstractBaseEntity;
+import bashpound.marketplaceTemp.domain.common.model.AbstractBaseEntity;
 
 import java.util.Date;
 import java.util.Objects;
@@ -40,24 +40,29 @@ public class Users extends AbstractBaseEntity {
   }
 
 
-  public static Users create(String username, String emailAddress, String password) {
-    Users users = new Users();
-    users.username = username;
-    users.emailAddress = emailAddress;
-    users.password = password;
-    users.firstName = "";
-    users.lastName = "";
-    users.createdDate = new Date();
-    return users;
+  public static Users create(String username, String emailAddress, String firsName, String lastName, String password) {
+	    Users user = new Users();
+	    user.username = username;
+	    user.emailAddress = emailAddress;
+	    user.password = password;
+	    user.firstName = firsName;
+	    user.lastName = lastName;
+	    user.createdDate = new Date();
+	    return user;
   }
 
-  public Long getId() {
-    return id;
+  public UserId getId() {
+	    return new UserId(id);
   }
 
   public String getUsername() {
     return username;
   }
+  
+  public void updateName(String firstName, String lastName) {
+	    this.firstName = firstName;
+	    this.lastName = lastName;
+  }  
 
   public String getEmailAddress() {
     return emailAddress;
@@ -73,6 +78,10 @@ public class Users extends AbstractBaseEntity {
 
   public String getLastName() {
     return lastName;
+  }
+  
+  public String getInitials() {
+	    return (firstName.substring(0, 1) + lastName.substring(0, 1)).toUpperCase();
   }
 
   public Date getCreatedDate() {

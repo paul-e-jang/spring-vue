@@ -4,6 +4,9 @@ import org.springframework.stereotype.Component;
 
 import bashpound.marketplace.domain.common.security.PasswordEncryptor;
 
+/**
+ * User registration domain service
+ */
 @Component
 public class RegistrationManagement {
 
@@ -15,7 +18,7 @@ public class RegistrationManagement {
     this.passwordEncryptor = passwordEncryptor;
   }
 
-  public Users register(String username, String emailAddress, String password)
+  public Users register(String username, String emailAddress, String firstName, String lastName, String password)
     throws RegistrationException {
     Users existingUser = repository.findByUsername(username);
     if (existingUser != null) {
@@ -28,7 +31,7 @@ public class RegistrationManagement {
     }
 
     String encryptedPassword = passwordEncryptor.encrypt(password);
-    Users newUser = Users.create(username, emailAddress.toLowerCase(), encryptedPassword);
+    Users newUser = Users.create(username, emailAddress.toLowerCase(), firstName, lastName, encryptedPassword);
     repository.save(newUser);
     return newUser;
   }

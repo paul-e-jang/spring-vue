@@ -22,10 +22,17 @@ public interface UserRepository {
   Users findByEmailAddress(String emailAddress);
 
   /**
+   * Find user by id
+   *
+   * @param userId the id of the user
+   * @return a user instance or null if not found
+   */
+  Users findById(UserId userId);
+
+  /**
    * Save a new user or an existing user
    *
-   * @param users the user instance to be saved
-   * @return the newly save user
+   * @param user the user instance to be saved
    */
-  void save(Users users);
+  void save(Users user);
 }

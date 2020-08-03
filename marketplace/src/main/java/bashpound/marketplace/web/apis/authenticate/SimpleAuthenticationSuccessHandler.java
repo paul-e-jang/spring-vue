@@ -1,10 +1,11 @@
 package bashpound.marketplace.web.apis.authenticate;
 
-import bashpound.marketplace.web.results.ApiResult;
-import bashpound.marketplace.utils.JsonUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+import bashpound.marketplace.utils.JsonUtils;
+import bashpound.marketplace.web.results.ApiResult;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

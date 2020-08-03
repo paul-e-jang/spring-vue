@@ -1,12 +1,13 @@
 package bashpound.marketplace.web.apis.authenticate;
 
-import bashpound.marketplace.web.results.ApiResult;
-import bashpound.marketplace.utils.JsonUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+
+import bashpound.marketplace.utils.JsonUtils;
+import bashpound.marketplace.web.results.ApiResult;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
