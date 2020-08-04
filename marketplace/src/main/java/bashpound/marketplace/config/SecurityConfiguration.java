@@ -1,5 +1,6 @@
 package bashpound.marketplace.config;
 
+import bashpound.marketplace.domain.common.security.AccessDeniedHandlerImpl;
 import bashpound.marketplace.web.apis.authenticate.AuthenticationFilter;
 import bashpound.marketplace.web.apis.authenticate.SimpleAuthenticationFailureHandler;
 import bashpound.marketplace.web.apis.authenticate.SimpleAuthenticationSuccessHandler;
@@ -11,10 +12,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.access.ExceptionTranslationFilter;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import bashpound.marketplace.domain.common.security.ApiRequestAccessDeniedExceptionTranslationFilter;
 
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -25,13 +29,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
+      .exceptionHandling().accessDeniedHandler(accessDeniedHandler())
+      .and()
       .authorizeRequests()
         .antMatchers(PUBLIC).permitAll()
         .anyRequest().authenticated()
       .and()
         .addFilterAt(authenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+        .addFilterAfter(apiRequestExceptionTranslationFilter(), ExceptionTranslationFilter.class)
         .formLogin()
-        .loginPage("/loginpage")
+        .loginPage("/loginpage").defaultSuccessUrl("/")
       .and()
         .logout()
         .logoutUrl("/logout")
@@ -44,12 +51,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   public void configure(WebSecurity web) {
     web.ignoring().antMatchers("/static/**", "/js/**", "/css/**", "/img/**", "/images/**", "/favicon.ico");
   }
-
+  
   @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
-
+  
+  
   @Bean
   public AuthenticationFilter authenticationFilter() throws Exception {
     AuthenticationFilter authenticationFilter = new AuthenticationFilter();
@@ -63,7 +71,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   public AuthenticationSuccessHandler authenticationSuccessHandler() {
     return new SimpleAuthenticationSuccessHandler();
   }
-
+  
+  public AccessDeniedHandler accessDeniedHandler() {
+	    return new AccessDeniedHandlerImpl();
+	  }
+  
   @Bean
   public AuthenticationFailureHandler authenticationFailureHandler() {
     return new SimpleAuthenticationFailureHandler();
@@ -73,4 +85,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   public LogoutSuccessHandler logoutSuccessHandler() {
     return new SimpleLogoutSuccessHandler();
   }
+  
+  public ApiRequestAccessDeniedExceptionTranslationFilter apiRequestExceptionTranslationFilter() {
+	 return new ApiRequestAccessDeniedExceptionTranslationFilter();
+	 }
 }

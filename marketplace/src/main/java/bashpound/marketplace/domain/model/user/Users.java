@@ -23,7 +23,7 @@ public class Users extends AbstractBaseEntity {
   @Column(name = "email_address", nullable = false, length = 100, unique = true)
   private String emailAddress;
 
-  @Column(name = "password", nullable = false, length = 30)
+  @Column(name = "password", nullable = false, length = 60)
   private String password;
 
   @Column(name = "first_name", nullable = true, length = 45)
@@ -51,8 +51,8 @@ public class Users extends AbstractBaseEntity {
     return users;
   }
 
-  public Long getId() {
-    return id;
+  public UserId getId() {
+    return new UserId(id);
   }
 
   public String getUsername() {

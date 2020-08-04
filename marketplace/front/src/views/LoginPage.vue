@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-  <form class="form-signin">
+  <form class="form-signin" @submit.prevent="submitForm">
     <div class="text-center mb-4">
       <img class="mb-4" src="../assets/svcLogoWithoutFrames.svg" alt="" width="200" height="100">
       <h1 class="h3 mb-3 font-weight-normal">로그인</h1>
@@ -9,14 +9,22 @@
           href="https://caniuse.com/#feat=css-placeholder-shown">Works in latest Chrome, Safari, and Firefox.</a></p>-->
     </div>
 
+    <div v-show="errorMessage" class="alert alert-danger failed">{{ errorMessage }}</div>
+
     <div class="form-label-group">
-      <input type="text" id="Id" class="form-control" placeholder="아이디" required autofocus>
+      <input type="text" v-model="form.username" id="Id" class="form-control" placeholder="아이디" autofocus>
       <label for="Id">아이디</label>
+         <div class="field-error" v-if="$v.form.username.$dirty">
+          <div class="error text-danger" v-if="!$v.form.username.required">이메일 혹은 아이디를 입력하세요.</div>
+          </div>
     </div>
 
     <div class="form-label-group">
-      <input type="password" id="Pass" class="form-control" placeholder="비밀번호" required>
+      <input type="password" v-model="form.password" id="Pass" class="form-control" placeholder="비밀번호" >
       <label for="Pass">비밀번호</label>
+          <div class="field-error" v-if="$v.form.password.$dirty">
+          <div class="error text-danger" v-if="!$v.form.password.required">비밀번호를 입력하세요.</div>
+          </div>
     </div>
 
     <div class="checkbox mb-3">
@@ -25,7 +33,6 @@
       </label>
     </div>
     <button class="btn btn-lg btn-info btn-block mb-3 login_btn" type="submit">로그인</button>
-    <p v-if="error" class="error">로그인에 실패하였습니다.</p>
     <ul class="nav justify-content-center">
       <li class="nav-item">
         <a class="nav-link" href="#">아이디 찾기</a>
@@ -44,8 +51,44 @@
 </template>
 
 <script>
+import { required } from 'vuelidate/lib/validators'
+import authenticationService from '@/services/authentication'
+
 export default {
-  name: 'LoginPage'
+  name: 'LoginPage',
+  data: function () {
+    return {
+      form: {
+        username: '',
+        password: ''
+      },
+      errorMessage: ''
+    }
+  },
+  validations: {
+    form: {
+      username: {
+        required
+      },
+      password: {
+        required
+      }
+    }
+  },
+  methods: {
+    submitForm () {
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        return
+      }
+
+      authenticationService.authenticate(this.form).then(() => {
+        this.$router.push({ name: 'home' })
+      }).catch((error) => {
+        this.errorMessage = error.message
+      })
+    }
+  }
 }
 </script>
 
