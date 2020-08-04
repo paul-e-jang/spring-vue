@@ -23,6 +23,7 @@ C:\Users\user\OneDrive\Documents\GitHub\spring-vue\marketplace\src\main\java\bas
 C:\Users\user\OneDrive\Documents\GitHub\spring-vue\marketplace\src\main\java\bashpound\marketplace\domain\model\user\EmailAddressExistsException.java
 C:\Users\user\OneDrive\Documents\GitHub\spring-vue\marketplace\src\main\java\bashpound\marketplace\domain\model\user\UsernameExistsException.java
 C:\Users\user\OneDrive\Documents\GitHub\spring-vue\marketplace\src\main\java\bashpound\marketplace\domain\model\user\RegistrationException.java
+C:\Users\user\OneDrive\Documents\GitHub\spring-vue\marketplace\src\main\java\bashpound\marketplace\domain\common\model\Role.java
 C:\Users\user\OneDrive\Documents\GitHub\spring-vue\marketplace\src\main\java\bashpound\marketplace\domain\model\user\events\UserRegisteredEvent.java
 C:\Users\user\OneDrive\Documents\GitHub\spring-vue\marketplace\src\main\java\bashpound\marketplace\web\apis\authenticate\AuthenticationFilter.java
 C:\Users\user\OneDrive\Documents\GitHub\spring-vue\marketplace\src\main\java\bashpound\marketplace\web\pages\MainController.java
