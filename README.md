@@ -17,7 +17,9 @@
 + ## 구현 도구들(Build tools)
   + Unit test : JEST
   + e2e test : Nightwatch
-  + ES5-6 compatibility module: ESlint  
+  + ES5-6 compatibility module: ESlint
+  + Vue misc: Vuex, Router
+  
   + Database : Ojdbc6 XE 
   + Front: Node.js (12.18.0)
   + Front design: (Vue.js)@vue/cli 4.4.6, BootstrapVue(4.5.1), SCSS, inline CSS
@@ -26,7 +28,10 @@
   + Communication ports: 3000(Front/Client)<->8090(Back/Server)
   + Spring Dependencies: JPA, Web, DevTools, Thymeleaf(?maybe), RESTful, Security, Transaction(?maybe), Oauth2, Social(?maybe)
   + Build: Maven 3.6.3
-  + 기타(etc) dependencies : vuelidate, hibernate, .. ORM mapping 쪽은 별도 브랜치로 분류 (mybatis 등)
+  + ORM Mapping: Hibernate
+  + Input validation : Vuelidate, Hibernate Validator
+  + Logging: Slf4j
+  + Getter/Setter: Lombok
   
 + ## Target issues
   + Ojdbc외 postgreSQL, Mysql, (+H2 DB) migration
