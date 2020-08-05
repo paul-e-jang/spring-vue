@@ -26,7 +26,10 @@
   + Communication ports: 3000(Front/Client)<->8090(Back/Server)
   + Spring Dependencies: JPA, Web, DevTools, Thymeleaf(?maybe), RESTful, Security, Transaction(?maybe), Oauth2, Social(?maybe)
   + Build: Maven 3.6.3
-  + 기타(etc) dependencies : vuelidate, hibernate, .. ORM mapping 쪽은 별도 브랜치로 분류 (mybatis 등)
+  + ORM Mapping: Hibernate
+  + Input validation : Vuelidate, Hibernate Validator
+  + Logging: Slf4j
+  + Getter/Setter: Lombok
   
 + ## Target issues
   + Ojdbc외 postgreSQL, Mysql, (+H2 DB) migration
