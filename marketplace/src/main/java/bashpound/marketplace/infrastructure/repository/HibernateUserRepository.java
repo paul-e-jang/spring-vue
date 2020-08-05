@@ -37,14 +37,7 @@ public class HibernateUserRepository extends HibernateSupport implements UserRep
     query.setParameter("id", userId.value());
     return query.uniqueResult();
   }
-  
-  @Override
-  public Users authenticate(String username, String password) {
-    Query<Users> query = getSession().createQuery("from Users where username = :username and password = :password", Users.class);
-    query.setParameter("username", username);
-    query.setParameter("password", password);
-    return query.uniqueResult();
-  }
+ 
 
   @Override
   public void save(Users users) {

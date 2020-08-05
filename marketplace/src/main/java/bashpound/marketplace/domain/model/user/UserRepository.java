@@ -36,10 +36,4 @@ public interface UserRepository {
    * @return the newly save user
    */
   void save(Users users);
-
-  /**
-  @param username
-  @return null or user
-  */
-  Users authenticate(String username, String password);
 }

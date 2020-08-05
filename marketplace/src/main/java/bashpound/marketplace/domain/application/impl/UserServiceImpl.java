@@ -38,16 +38,7 @@ public class UserServiceImpl implements UserService {
   public Users findById(UserId userId) {
     return userRepository.findById(userId);
   }
-  
-  @Override
-  public boolean authenticate(String username, String password) {
-	boolean judge = false;
-    Users user = userRepository.authenticate(username, password);
-    if(user.getUsername().equals(username)) {
-    	judge = true;
-    }
-    return judge;
-  }
+
 
   @Override
   public void register(RegistrationCommand command) throws RegistrationException {

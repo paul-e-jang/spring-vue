@@ -2,9 +2,13 @@ package bashpound.marketplace.config;
 
 import bashpound.marketplace.domain.common.security.AccessDeniedHandlerImpl;
 import bashpound.marketplace.web.apis.authenticate.AuthenticationFilter;
+import bashpound.marketplace.web.apis.authenticate.OjdbcAuthenticationProvider;
 import bashpound.marketplace.web.apis.authenticate.SimpleAuthenticationFailureHandler;
 import bashpound.marketplace.web.apis.authenticate.SimpleAuthenticationSuccessHandler;
 import bashpound.marketplace.web.apis.authenticate.SimpleLogoutSuccessHandler;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -25,6 +29,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   private static final String[] PUBLIC = new String[]{
     "/error", "/loginpage", "/logout", "/register", "/api/registrations"};
+  
+  @Autowired
+  OjdbcAuthenticationProvider authProvider;
+  
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
@@ -39,24 +47,26 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .addFilterAfter(apiRequestExceptionTranslationFilter(), ExceptionTranslationFilter.class)
         .formLogin()
         .loginPage("/loginpage").defaultSuccessUrl("/")
+        .permitAll()
       .and()
         .logout()
         .logoutUrl("/logout")
         .logoutSuccessHandler(logoutSuccessHandler())
       .and()
         .csrf().disable();
+    http.authenticationProvider(authProvider);
   }
 
   @Override
   public void configure(WebSecurity web) {
-    web.ignoring().antMatchers("/static/**", "/js/**", "/css/**", "/img/**", "/images/**", "/favicon.ico");
+    web.ignoring().antMatchers("/js/**", "/css/**", "/img/**", "/images/**", "/favicon.ico");
   }
   
   @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
-  
+
   
   @Bean
   public AuthenticationFilter authenticationFilter() throws Exception {

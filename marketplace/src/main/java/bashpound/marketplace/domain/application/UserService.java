@@ -26,12 +26,6 @@ public interface UserService {
    */
   void register(RegistrationCommand command) throws RegistrationException;
   
-  /**
-   * find unique result having username and password matched
-   *
-   * @param
-   * @return null or userId
-   */  
-  boolean authenticate(String username, String password);
+
   
 }
