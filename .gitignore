@@ -30,3 +30,5 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+marketplace/src/main/resources/application.propertiesReal
+marketplace/src/main/resources/application.propertiesReal
