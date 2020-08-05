@@ -34,3 +34,4 @@ marketplace/src/main/resources/application.propertiesReal
 marketplace/src/main/resources/application.propertiesReal
 pom.xml
 marketplace/pom.xml
+marketplace/src/main/resources/application.properties
