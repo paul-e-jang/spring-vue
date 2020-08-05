@@ -6,8 +6,6 @@ import bashpound.marketplace.web.apis.authenticate.SimpleAuthenticationFailureHa
 import bashpound.marketplace.web.apis.authenticate.SimpleAuthenticationSuccessHandler;
 import bashpound.marketplace.web.apis.authenticate.SimpleLogoutSuccessHandler;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -44,7 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .addFilterAt(authenticationFilter(), UsernamePasswordAuthenticationFilter.class)
         .addFilterAfter(apiRequestExceptionTranslationFilter(), ExceptionTranslationFilter.class)
         .formLogin()
-        .loginPage("/loginpage").defaultSuccessUrl("/")
+        .loginPage("/loginpage")
         .permitAll()
       .and()
         .logout()

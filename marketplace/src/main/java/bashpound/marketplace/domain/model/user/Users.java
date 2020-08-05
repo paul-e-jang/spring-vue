@@ -78,6 +78,10 @@ public class Users extends AbstractBaseEntity {
   public Date getCreatedDate() {
     return createdDate;
   }
+  
+  public String getInitials() {
+	    return (firstName.substring(0, 1) + lastName.substring(0, 1)).toUpperCase();
+  }
 
   @Override
   public boolean equals(Object o) {

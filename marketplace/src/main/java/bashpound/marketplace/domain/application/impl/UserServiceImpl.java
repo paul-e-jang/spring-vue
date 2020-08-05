@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService {
 	  private void sendWelcomeMessage(Users user) {
 	    mailManager.send(
 	      user.getEmailAddress(),
-	      "Welcome to TaskAgile",
+	      "Welcome to Bashpound Marketplace",
 	      "welcome.ftl",
 	      MessageVariable.from("user", user)
 	    );
