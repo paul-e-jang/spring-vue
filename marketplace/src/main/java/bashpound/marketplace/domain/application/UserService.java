@@ -1,12 +1,13 @@
 package bashpound.marketplace.domain.application;
 
-import bashpound.marketplace.domain.model.user.Users;
-import bashpound.marketplace.domain.model.user.UserId;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-import bashpound.marketplace.domain.application.commands.RegistrationCommand;
+import bashpound.marketplace.domain.application.commands.RegisterCommand;
 import bashpound.marketplace.domain.model.user.RegistrationException;
+import bashpound.marketplace.domain.model.user.UserId;
+import bashpound.marketplace.domain.model.user.Users;
 
-public interface UserService {
+public interface UserService extends UserDetailsService{
 /**
 	* Find user by id
 	*
@@ -24,7 +25,7 @@ public interface UserService {
    *                               1) Username already exists
    *                               2) Email address already exists.
    */
-  void register(RegistrationCommand command) throws RegistrationException;
+  void register(RegisterCommand command) throws RegistrationException;
   
 
   

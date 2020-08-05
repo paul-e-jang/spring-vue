@@ -4,7 +4,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import bashpound.marketplace.domain.application.commands.RegistrationCommand;
+import bashpound.marketplace.domain.application.commands.RegisterCommand;
 
 public class RegistrationPayload {
 
@@ -21,8 +21,8 @@ public class RegistrationPayload {
   @NotNull
   private String password;
 
-  public RegistrationCommand toCommand() {
-    return new RegistrationCommand(this.username, this.emailAddress, this.password);
+  public RegisterCommand toCommand() {
+    return new RegisterCommand(this.username, this.emailAddress, this.password);
   }
 
   public String getUsername() {

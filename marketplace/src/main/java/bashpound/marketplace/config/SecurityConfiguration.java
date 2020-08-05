@@ -2,7 +2,6 @@ package bashpound.marketplace.config;
 
 import bashpound.marketplace.domain.common.security.AccessDeniedHandlerImpl;
 import bashpound.marketplace.web.apis.authenticate.AuthenticationFilter;
-import bashpound.marketplace.web.apis.authenticate.OjdbcAuthenticationProvider;
 import bashpound.marketplace.web.apis.authenticate.SimpleAuthenticationFailureHandler;
 import bashpound.marketplace.web.apis.authenticate.SimpleAuthenticationSuccessHandler;
 import bashpound.marketplace.web.apis.authenticate.SimpleLogoutSuccessHandler;
@@ -30,8 +29,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   private static final String[] PUBLIC = new String[]{
     "/error", "/loginpage", "/logout", "/register", "/api/registrations"};
   
-  @Autowired
-  OjdbcAuthenticationProvider authProvider;
+
   
 
   @Override
@@ -54,7 +52,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .logoutSuccessHandler(logoutSuccessHandler())
       .and()
         .csrf().disable();
-    http.authenticationProvider(authProvider);
   }
 
   @Override
