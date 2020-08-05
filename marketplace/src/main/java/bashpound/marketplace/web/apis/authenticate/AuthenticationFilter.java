@@ -27,7 +27,8 @@ public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter
   @Override
   public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
     throws AuthenticationException, IOException {
-
+	response.setContentType("text/xml;charset=UTF-8"); //JSON 한글 설정
+	
     log.debug("Processing login request");
 
     String requestBody = IOUtils.toString(request.getReader());

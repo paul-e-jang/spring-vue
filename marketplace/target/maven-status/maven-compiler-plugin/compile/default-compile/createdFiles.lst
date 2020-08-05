@@ -27,7 +27,6 @@ bashpound\marketplace\domain\common\model\AbstractBaseId.class
 bashpound\marketplace\web\pages\MainController.class
 bashpound\marketplace\domain\application\commands\RegisterCommand.class
 bashpound\marketplace\domain\common\mail\MailManager.class
-bashpound\marketplace\web\apis\authenticate\OjdbcAuthenticationProvider.class
 bashpound\marketplace\domain\model\user\UserId.class
 bashpound\marketplace\domain\common\security\ApiRequestAccessDeniedExceptionTranslationFilter$DefaultThrowableAnalyzer.class
 bashpound\marketplace\domain\model\user\Users.class
@@ -38,7 +37,6 @@ bashpound\marketplace\domain\common\security\CurrentUser.class
 bashpound\marketplace\domain\model\user\EmailAddressExistsException.class
 bashpound\marketplace\domain\common\event\TriggeredBy.class
 bashpound\marketplace\domain\application\UserService.class
-bashpound\marketplace\web\apis\authenticate\CustomUserDetailsService.class
 bashpound\marketplace\domain\model\user\RegistrationManagement.class
 bashpound\marketplace\domain\common\security\ApiRequestAccessDeniedExceptionTranslationFilter.class
 bashpound\marketplace\web\results\Result.class

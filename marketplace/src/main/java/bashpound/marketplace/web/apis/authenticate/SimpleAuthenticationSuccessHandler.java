@@ -16,6 +16,6 @@ public class SimpleAuthenticationSuccessHandler implements AuthenticationSuccess
   public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                       Authentication authentication) throws IOException {
     response.setStatus(HttpStatus.OK.value());
-    JsonUtils.write(response.getWriter(), ApiResult.message("authenticated"));
+    JsonUtils.write(response.getWriter(), ApiResult.message("로그인 완료."));
   }
 }

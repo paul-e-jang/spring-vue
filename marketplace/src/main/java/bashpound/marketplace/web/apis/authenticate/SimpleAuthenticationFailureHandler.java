@@ -20,11 +20,11 @@ public class SimpleAuthenticationFailureHandler implements AuthenticationFailure
     response.setStatus(HttpStatus.BAD_REQUEST.value());
     ApiResult failure;
     if (exception instanceof BadCredentialsException) {
-      failure = ApiResult.message("Invalid credentials");
+      failure = ApiResult.message("로그인 정보가 잘못되었습니다.");
     } else if (exception instanceof InsufficientAuthenticationException) {
-      failure = ApiResult.message("Invalid authentication request");
+      failure = ApiResult.message("올바르지 않은 요청입니다.");
     } else {
-      failure = ApiResult.message("Authentication failure");
+      failure = ApiResult.message("자격 증명에 실패하였습니다.");
     }
     JsonUtils.write(response.getWriter(), failure);
   }
