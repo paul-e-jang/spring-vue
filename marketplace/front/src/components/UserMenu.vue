@@ -6,7 +6,6 @@
     <li><router-link to="/loginpage" class="text-dark mr-3">로그인</router-link> </li>
     <li><router-link to="/RegisterPage" class="text-dark mr-3">회원가입</router-link></li>
     <li><a href="/logout" class="text-dark mr-3">로그아웃</a></li>
-    <li><router-link to="/" class="text-dark mr-3">(개발)게시판 보기</router-link></li>
     <li>
       <a class="text-dark mr-3" rel="nofollow" href="#" title="MyPage">
         마이페이지

@@ -13,6 +13,7 @@
       <div class="nav border my-auto">
       </div>
         <BreadCrumbs class="col-12 border py-0"/>
+        <DevMenu />
       <!-- form 작성용
         <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="text" placeholder="Search">
@@ -42,6 +43,7 @@ import SearchBar from '@/components/SearchBar.vue'
 import UserMenu from '@/components/UserMenu.vue'
 import Categories from '@/components/Categories.vue'
 import BreadCrumbs from '@/components/BreadCrumbs.vue'
+import DevMenu from '@/components/DevMenu.vue'
 
 export default {
   name: 'Header',
@@ -49,7 +51,8 @@ export default {
     SearchBar,
     UserMenu,
     Categories,
-    BreadCrumbs
+    BreadCrumbs,
+    DevMenu
   }
 }
 </script>

@@ -6,6 +6,7 @@ import RegisterPage from '@/views/RegisterPage'
 import UserDetail from '@/views/UserDetail'
 import UserList from '@/views/UserList'
 import UserCreate from '@/views/UserCreate'
+import WriteArticle from '@/views/WriteArticle'
 
 Vue.use(VueRouter)
 
@@ -36,6 +37,10 @@ const routes = [
     beforeEnter: function (to, from, next) {
       next('/')
     }
+  },
+  {
+    path: '/WriteArticle',
+    component: WriteArticle
   },
   {
     path: '/about',

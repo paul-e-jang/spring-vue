@@ -53,7 +53,6 @@
 <script>
 import { required } from 'vuelidate/lib/validators'
 import authenticationService from '@/services/authentication'
-import notify from '@/utils/notify'
 
 export default {
   name: 'LoginPage',
@@ -86,7 +85,6 @@ export default {
       authenticationService.authenticate(this.form).then(() => {
         this.$router.push({ name: 'Home' })
         this.$bus.$emit('authenticated')
-        notify.cloaeAll()
       }).catch((error) => {
         this.errorMessage = error.message
       })
