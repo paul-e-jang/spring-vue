@@ -36,3 +36,5 @@ marketplace/src/main/resources/application.properties
 pom.xml
 marketplace/pom.xml
 
+marketplace/target/classes/application.properties
+marketplace/target/classes/META-INF/build-info.properties
