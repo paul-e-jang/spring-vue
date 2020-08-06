@@ -14,9 +14,15 @@ export default {
   data () {
     return {
       editor: ClassicEditor,
-      editorData: '<p>Content of the editor.</p>',
+      editorData: '',
       editorConfig: ''
     }
   }
 }
 </script>
+
+<style>
+.ck-editor__editable {
+       min-height: 500px;
+}
+</style>
