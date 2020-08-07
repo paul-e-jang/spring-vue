@@ -29,15 +29,12 @@ pnpm-debug.log*
 *.ntvs*
 *.njsproj
 *.sln
+*.properties
+*.propertiesReal
 *.sw?
-marketplace/src/main/resources/application.propertiesReal
-marketplace/src/main/resources/application.propertiesReal
-marketplace/src/main/resources/application.properties
+
 pom.xml
 marketplace/pom.xml
-
-marketplace/target/classes/application.properties
-marketplace/target/classes/META-INF/build-info.properties
 
 marketplace/front/package.json
 marketplace/front/package-lock.json
