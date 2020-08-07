@@ -3,12 +3,12 @@ import errorParser from '@/utils/error-parser'
 
 export default {
   /**
-   * Register a new user
+   * write an article
    * @param {Object} detail registration detail
    */
-  register (detail) {
+  DoWrite (detail) {
     return new Promise((resolve, reject) => {
-      axios.post('/writearticle', detail).then(({ data }) => {
+      axios.post('/write', detail).then(({ data }) => {
         resolve(data)
       }).catch((error) => {
         reject(errorParser.parse(error))

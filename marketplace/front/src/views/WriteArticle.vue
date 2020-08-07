@@ -1,28 +1,45 @@
 <template>
   <div>
-    <form class="col-6 border mx-auto">
+    <form class="col-6 border mx-auto" @submit.prevent="submitForm">
       <div class="form-group row border">
-         <label for="Subject" class="display-5">글쓰기</label>
-          <input type="text" class="form-control mx-3 rounded-0" id="Subject" placeholder="제목" />
+        <label for="form.Subject"><h3>글쓰기</h3></label>
+        <input
+          type="text"
+          class="form-control mx-3 rounded-0"
+          id="Subject"
+          placeholder="제목"
+          v-model="form.Subject"
+        />
+        <div class="field-error" v-if="$v.form.Subject.$dirty">
+            <div class="error ml-3" v-if="!$v.form.Subject.required">제목을 입력하세요.</div>
+            <div class="error" v-if="!$v.form.Subject.maxLength">제목은 최대 {{$v.form.Subject.$params.maxLength.max}} 글자입니다.</div>
+        </div>
       </div>
       <CKEditor />
-      <div class="form-group row col-5">
-  <div class="text-center">
-    <v-btn class="ma-2" tile color="indigo" dark>Tile Button</v-btn>
-    <v-btn class="ma-2" tile outlined color="success">
-      <v-icon left>mdi-pencil</v-icon> Edit
-    </v-btn>
-    <v-btn class="ma-2" tile large color="teal" icon>
-      <v-icon>mdi-vuetify</v-icon>
-    </v-btn>
-  </div>
+      <div class="form-group row col-6 mx-auto">
+        <div class="text-center mx-auto">
+          <v-btn class="ma-2 mr-3" tile outlined color="success" type="submit">
+            <v-icon left>mdi-pencil</v-icon>등록
+          </v-btn>
+          <v-btn v-b-modal.modal-center class="ma-2" tile outlined>
+            <v-icon left>mdi-cancel</v-icon>취소
+          </v-btn>
+          <div>
+          <b-modal id="modal-center" title="확인" centered content-class="shadow" @ok.prevent="goBack">
+            <p class="my-2">취소 후 되돌릴 수 없습니다. 취소하시겠습니까?</p>
+          </b-modal>
+          </div>
+        </div>
       </div>
+      <div v-show="errorMessage" class="alert alert-danger failed">{{ errorMessage }}</div>
     </form>
   </div>
 </template>
 
 <script>
 import CKEditor from '@/components/CKEditor.vue'
+import { required, maxLength } from 'vuelidate/lib/validators'
+import Write from '@/services/write'
 
 export default {
   name: 'WriteArticle',
@@ -31,30 +48,52 @@ export default {
   },
   data () {
     return {
-      loader: null,
-      loading: false,
-      loading2: false,
-      loading3: false,
-      loading4: false,
-      loading5: false
+      form: {
+        Subject: '',
+        Content: CKEditor.Editordata,
+        Writer: this.$store.state.user.name
+      },
+      errorMessage: ''
     }
   },
-  watch: {
-    loader () {
-      const l = this.loader
-      this[l] = !this[l]
+  methods: {
+    submitForm () {
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        return
+      }
 
-      setTimeout(() => (this[l] = false), 3000)
-
-      this.loader = null
+      Write.DoWrite(this.form)
+        .then(() => {
+          this.$router.push({ path: 'BoardView' })
+        })
+        .catch((error) => {
+          this.errorMessage = '게시글 등록에 실패했습니다.' + error.message
+        })
+    },
+    goBack () {
+      this.$router.go(-1)
+    }
+  },
+  validations: {
+    form: {
+      Subject: {
+        required,
+        maxLength: maxLength(100)
+      }
     }
   }
 }
 </script>
-
 <style scoped>
 .form-control:focus {
   border-color: rgb(58, 98, 230);
-  box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 0px rgba(255, 0, 0, 0.6);
+  box-shadow: inset 0
+   0px 0px rgba(0, 0, 0, 0.075), 0 0 0px rgba(255, 0, 0, 0.6);
+}
+.error{
+  color: crimson;
+  text-align: left;
+  font-size: 14px;
 }
 </style>

@@ -1,5 +1,6 @@
 <template>
     <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+
 </template>
 
 <script>

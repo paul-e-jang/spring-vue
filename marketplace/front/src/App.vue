@@ -19,6 +19,17 @@
   background: linear-gradient( to bottom, white 30%,#e7e7e79f 70%);
 }
 
+body.modal-open {
+    overflow: auto;
+}
+body.modal-open[style] {
+    padding-right: 0px !important;
+}
+
+.modal::-webkit-scrollbar {
+    width: 0 !important; /*removes the scrollbar but still scrollable*/
+    /* reference: http://stackoverflow.com/a/26500272/2259400 */
+}
 </style>
 
 <script>

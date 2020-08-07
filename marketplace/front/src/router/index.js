@@ -7,6 +7,7 @@ import UserDetail from '@/views/UserDetail'
 import UserList from '@/views/UserList'
 import UserCreate from '@/views/UserCreate'
 import WriteArticle from '@/views/WriteArticle'
+import BoardView from '@/views/BoardView'
 
 Vue.use(VueRouter)
 
@@ -41,6 +42,10 @@ const routes = [
   {
     path: '/WriteArticle',
     component: WriteArticle
+  },
+  {
+    path: '/BoardView',
+    component: BoardView
   },
   {
     path: '/about',
