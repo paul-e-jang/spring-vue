@@ -84,7 +84,7 @@ export default {
 
       authenticationService.authenticate(this.form).then(() => {
         this.$router.push({ name: 'Home' })
-        this.$bus.$emit('authenticated')
+        this.$store.state.user.authenticated = true
       }).catch((error) => {
         this.errorMessage = error.message
       })

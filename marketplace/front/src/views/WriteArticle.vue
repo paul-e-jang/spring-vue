@@ -6,13 +6,13 @@
         <input
           type="text"
           class="form-control mx-3 rounded-0"
-          id="Subject"
+          id="subject"
           placeholder="제목"
-          v-model="form.Subject"
+          v-model="form.subject"
         />
-        <div class="field-error" v-if="$v.form.Subject.$dirty">
-            <div class="error ml-3" v-if="!$v.form.Subject.required">제목을 입력하세요.</div>
-            <div class="error" v-if="!$v.form.Subject.maxLength">제목은 최대 {{$v.form.Subject.$params.maxLength.max}} 글자입니다.</div>
+        <div class="field-error" v-if="$v.form.subject.$dirty">
+            <div class="error ml-3" v-if="!$v.form.subject.required">제목을 입력하세요.</div>
+            <div class="error" v-if="!$v.form.subject.maxLength">제목은 최대 {{$v.form.subject.$params.maxLength.max}} 글자입니다.</div>
         </div>
       </div>
       <CKEditor />
@@ -49,9 +49,9 @@ export default {
   data () {
     return {
       form: {
-        Subject: '',
-        Content: CKEditor.Editordata,
-        Writer: this.$store.state.user.name
+        subject: '',
+        content: CKEditor.Editordata,
+        author: this.$store.state.user.name
       },
       errorMessage: ''
     }
@@ -77,7 +77,7 @@ export default {
   },
   validations: {
     form: {
-      Subject: {
+      subject: {
         required,
         maxLength: maxLength(100)
       }

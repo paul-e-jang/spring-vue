@@ -4,8 +4,7 @@ module.exports = {
   },
   configureWebpack: {
     entry: {
-      app: './src/main.js',
-      style: []
+      app: './src/main.js'
     }
   },
   transpileDependencies: [
