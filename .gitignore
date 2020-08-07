@@ -6,6 +6,9 @@ marketplace/.settings
 marketplace/mvnw
 marketplace/mvnw.cmd
 marketplace/target
+marketplace/src/main/resources/static
+marketplace/front/package.json
+marketplace/front/package-lock.json
 
 /tests/e2e/reports/
 selenium-debug.log
@@ -34,7 +37,4 @@ pnpm-debug.log*
 *.sw?
 
 pom.xml
-marketplace/pom.xml
 
-marketplace/front/package.json
-marketplace/front/package-lock.json
