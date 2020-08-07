@@ -19,7 +19,7 @@ public class Article extends AbstractBaseEntity {
   @Column(name = "subject", nullable = false, length = 100)
   private String subject;
 
-  @Column(name = "author", nullable = false)
+  @Column(name = "author", nullable = true)
   private String author;
   
   @Column(name = "content")
