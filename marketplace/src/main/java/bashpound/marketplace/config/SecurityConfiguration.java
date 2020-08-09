@@ -25,10 +25,10 @@ import bashpound.marketplace.domain.common.security.ApiRequestAccessDeniedExcept
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   private static final String[] PUBLIC = new String[]{
-    "/", "/error", "/loginpage", "/logout", "/register", "/api/registrations", "/api/write", "/api/WriteArticle"};
-  
+    "/", "/error", "/loginpage", "/api/logout", "/register", "/api/registrations", "/api/write", "/api/WriteArticle"};
 
-  
+
+
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
@@ -46,7 +46,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .permitAll()
       .and()
         .logout()
-        .logoutUrl("/logout")
+        .logoutUrl("/api/logout")
         .logoutSuccessHandler(logoutSuccessHandler())
       .and()
         .csrf().disable();
@@ -56,13 +56,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   public void configure(WebSecurity web) {
     web.ignoring().antMatchers("/js/**", "/css/**", "/img/**", "/images/**", "/favicon.ico");
   }
-  
+
   @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
 
-  
+
   @Bean
   public AuthenticationFilter authenticationFilter() throws Exception {
     AuthenticationFilter authenticationFilter = new AuthenticationFilter();
@@ -76,11 +76,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   public AuthenticationSuccessHandler authenticationSuccessHandler() {
     return new SimpleAuthenticationSuccessHandler();
   }
-  
+
   public AccessDeniedHandler accessDeniedHandler() {
 	    return new AccessDeniedHandlerImpl();
 	  }
-  
+
   @Bean
   public AuthenticationFailureHandler authenticationFailureHandler() {
     return new SimpleAuthenticationFailureHandler();
@@ -90,7 +90,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   public LogoutSuccessHandler logoutSuccessHandler() {
     return new SimpleLogoutSuccessHandler();
   }
-  
+
   public ApiRequestAccessDeniedExceptionTranslationFilter apiRequestExceptionTranslationFilter() {
 	 return new ApiRequestAccessDeniedExceptionTranslationFilter();
 	 }

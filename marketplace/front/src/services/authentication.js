@@ -1,5 +1,6 @@
 import axios from 'axios'
 import errorParser from '@/utils/error-parser'
+import eventBus from '@/event-bus'
 
 export default {
   /**
@@ -21,6 +22,19 @@ export default {
     return new Promise((resolve, reject) => {
       axios.post('/user').then(({ data }) => {
         resolve(data)
+        eventBus.$emit('myDataFetched', data)
+        console.log(data)
+      }).catch((error) => {
+        reject(errorParser.parse(error))
+      })
+    })
+  },
+
+  logOut () {
+    return new Promise((resolve, reject) => {
+      axios.post('/logout').then(({ data }) => {
+        resolve(data)
+        eventBus.$emit('logout', data)
         console.log(data)
       }).catch((error) => {
         reject(errorParser.parse(error))

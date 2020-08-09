@@ -84,8 +84,10 @@ export default {
 
       authenticationService.authenticate(this.form).then(() => {
         authenticationService.fetchuser()
+        this.$bus.$on('myDataFetched', data => {
+          this.$store.commit('updateMyData', data)
+        })
         this.$router.push({ name: 'Home' })
-        this.$store.state.user.authenticated = true
       }).catch((error) => {
         this.errorMessage = error.message
       })
