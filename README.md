@@ -40,3 +40,4 @@
   + JSON Oauth2 --> Spring Social 로 정식 build
 
 ## bashpound: 장은학(Jang Eunhack) / eunhackjang@gmail.com
+### github에서는 소스보기만 가능합니다. 작동 및 참여를 원하는분은 이메일로 문의 주세요.
