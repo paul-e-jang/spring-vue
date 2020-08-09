@@ -15,5 +15,16 @@ export default {
         reject(errorParser.parse(error))
       })
     })
+  },
+
+  fetchuser () {
+    return new Promise((resolve, reject) => {
+      axios.post('/user').then(({ data }) => {
+        resolve(data)
+        console.log(data)
+      }).catch((error) => {
+        reject(errorParser.parse(error))
+      })
+    })
   }
 }
