@@ -1,4 +1,3 @@
-
 marketplace/front/node_modules
 marketplace/front/dist
 marketplace/front/package.json
@@ -35,4 +34,3 @@ pnpm-debug.log*
 *.sw?
 
 pom.xml
-
