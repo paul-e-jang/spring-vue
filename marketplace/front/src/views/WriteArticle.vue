@@ -32,11 +32,12 @@
         </div>
       </div>
       <div v-show="errorMessage" class="alert alert-danger failed">{{ errorMessage }}</div>
-      <b class="danger">**개발전용**</b>
+      <b>**개발전용**</b><br>
       폼 입력 바인딩 테스트<br>
       form.subject: {{ form.subject }}<br>
       form.content: {{ form.content }}<br>
       form.author: {{ form.author }}<br>
+      form.boardname: {{ form.boardname }}
 
     </form>
   </div>
@@ -58,7 +59,8 @@ export default {
       form: {
         subject: '',
         content: '',
-        author: this.$store.state.user.name
+        author: this.$store.state.user.name,
+        boardname: 'default'
       },
       errorMessage: '',
       editor: ClassicEditor,

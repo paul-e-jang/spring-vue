@@ -7,6 +7,8 @@ import bashpound.marketplace.domain.model.article.Article;
 import bashpound.marketplace.domain.model.article.ArticleId;
 import bashpound.marketplace.domain.model.article.ArticleRepository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 @Repository
@@ -23,13 +25,21 @@ public class HibernateArticleRepository extends HibernateSupport implements Arti
     query.setParameter("id", articleId.value());
     return query.uniqueResult();
   }
- 
+  
+  @Override
+  public List<Article> findByBoardName(String boardname) {
+	  Query<Article> query = getSession().createQuery("from Article where boardname = :boardname", Article.class);
+	return query.getResultList();
+  } 
 
   @Override
   public void save(Article article) {
     entityManager.persist(article);
     entityManager.flush();
   }
+
+
+
 
 
 }

@@ -7,6 +7,9 @@ import bashpound.marketplace.domain.application.commands.WriteArticleCommand;
 
 public class WrtieArticlePayload {
 
+  @NotNull
+  private String boardname;
+	
   @Size(min = 1, max = 50, message = "Subject must be between 2 and 50 characters")
   @NotNull
   private String subject;
@@ -18,8 +21,12 @@ public class WrtieArticlePayload {
   private String author;
 
   public WriteArticleCommand toCommand() {
-    return new WriteArticleCommand(this.subject, this.content, this.author);
+    return new WriteArticleCommand(this.boardname, this.subject, this.content, this.author);
   }
+
+public String getBoardname() {
+	return boardname;
+}
 
 public String getSubject() {
 	return subject;
@@ -33,6 +40,10 @@ public String getAuthor() {
 	return author;
 }
 
+public void setBoardname(String boardname) {
+	this.boardname = boardname;
+}
+
 public void setSubject(String subject) {
 	this.subject = subject;
 }
@@ -41,9 +52,11 @@ public void setContent(String content) {
 	this.content = content;
 }
 
-public void setAuther(String author) {
+public void setAuthor(String author) {
 	this.author = author;
 }
+
+
 
 
 }

@@ -9,7 +9,7 @@ Vue.use(Vuex)
 
 const state = {
   user: {
-    name: null,
+    name: 'GUEST',
     authenticated: false
   }
 }

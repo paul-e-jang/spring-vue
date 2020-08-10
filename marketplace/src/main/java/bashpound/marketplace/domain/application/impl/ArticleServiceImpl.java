@@ -1,5 +1,7 @@
 package bashpound.marketplace.domain.application.impl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -8,6 +10,7 @@ import org.springframework.util.Assert;
 import bashpound.marketplace.domain.application.ArticleService;
 import bashpound.marketplace.domain.application.commands.WriteArticleCommand;
 import bashpound.marketplace.domain.common.event.DomainEventPublisher;
+import bashpound.marketplace.domain.model.article.Article;
 import bashpound.marketplace.domain.model.article.ArticleRegistrationException;
 import bashpound.marketplace.domain.model.article.ArticleRegistrationManagement;
 import bashpound.marketplace.domain.model.article.ArticleRepository;
@@ -32,10 +35,16 @@ public class ArticleServiceImpl implements ArticleService {
 	  public void register(WriteArticleCommand command) throws ArticleRegistrationException {
 	    Assert.notNull(command, "Parameter `command` must not be null");
 	    articleRegistrationManagement.register(
-	      command.getAuther(),
+	      command.getBoardname(),
+	      command.getAuthor(),
 	      command.getSubject(),
 	      command.getContent());
 	  }
 
+	@Override
+	public List<Article> findByBoardName(String boardname) {
+		return articleRepository.findByBoardName(boardname);
+	}
+	  
 
 }

@@ -15,6 +15,9 @@ public class Article extends AbstractBaseEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
+  
+  @Column(name = "boardid", nullable = false)
+  private String boardName;
 
   @Column(name = "subject", nullable = false, length = 100)
   private String subject;
@@ -35,8 +38,9 @@ public class Article extends AbstractBaseEntity {
   /**
    * new Article publish
    */
-  public static Article create(String author, String subject, String content) {
+  public static Article create(String boardName, String author, String subject, String content) {
     Article article = new Article();
+    article.boardName = boardName;
     article.author = author;
     article.subject = subject;
     article.content = content;
@@ -46,6 +50,10 @@ public class Article extends AbstractBaseEntity {
 
 public ArticleId getArticleId() {
 	return new ArticleId(id);
+}
+
+public String getBoardName() {
+	return boardName;
 }
 
 public String getSubject() {
@@ -78,6 +86,7 @@ public Date getCreatedDate() {
   public String toString() {
     return "Article{" +
       "id=" + id +
+      ", boardName='" + boardName + '\'' +
       ", subject='" + subject + '\'' +
       ", author='" + author + '\'' +
       ", content=" + content +
