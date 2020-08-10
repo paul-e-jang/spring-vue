@@ -1,6 +1,6 @@
 <template>
   <ul class="nav float-right">
-    <li class="mr-3"> {{ user }} 님, 환영합니다. authenticated: {{ this.$store.getters.authenticated }} </li>
+    <li v-if="Logged" class="mr-3"> {{ user }} 님, 환영합니다. </li>
     <li><router-link to="/" class="text-dark mr-3">HOME</router-link></li>
     <li><router-link to="/about" class="text-dark mr-3">ABOUT</router-link> </li>
     <li v-if="!Logged"><router-link to="/loginpage" class="text-dark mr-3">로그인</router-link> </li>
@@ -21,18 +21,10 @@ export default {
   },
   computed: {
     Logged: function () {
-      let judge = false
-      if (this.$store.getters.authenticated === true) {
-        judge = true
-      }
-      return judge
+      return Boolean(this.$store.getters.logged)
     },
     user: function () {
-      user = this.$store.getters.user
-      if (user === '') {
-        user = 'GUEST'
-      }
-      return user
+      return this.$store.getters.user
     }
   }
 }
