@@ -1,6 +1,5 @@
 package bashpound.marketplace.web.apis;
 
-
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,10 +9,8 @@ import bashpound.marketplace.domain.common.security.CurrentUser;
 import bashpound.marketplace.domain.model.user.SimpleUser;
 
 @Controller
-public class LoginSessionController {
-	
-
-    @RequestMapping(value="/api/user", produces= MediaType.APPLICATION_JSON_VALUE)
+public class ArticleController {
+    @RequestMapping(value="/api/article", produces= MediaType.APPLICATION_JSON_VALUE)
     public String getCurrentMemberJson(Model model, @CurrentUser SimpleUser user) {
       	
     	String currentuser = "Guest";
@@ -32,5 +29,4 @@ public class LoginSessionController {
         
         return "jsonmembertemplate";
     }
-
 }

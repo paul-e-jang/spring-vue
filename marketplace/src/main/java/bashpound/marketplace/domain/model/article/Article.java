@@ -16,7 +16,7 @@ public class Article extends AbstractBaseEntity {
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
   
-  @Column(name = "boardid", nullable = false)
+  @Column(name = "boardname", nullable = false)
   private String boardName;
 
   @Column(name = "subject", nullable = false, length = 100)

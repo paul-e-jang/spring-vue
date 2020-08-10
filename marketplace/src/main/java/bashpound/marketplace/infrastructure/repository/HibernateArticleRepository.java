@@ -18,17 +18,16 @@ public class HibernateArticleRepository extends HibernateSupport implements Arti
     super(entityManager);
   }
 
-  
   @Override
   public Article findById(ArticleId articleId) {
-    Query<Article> query = getSession().createQuery("from Article where id = :id", Article.class);
+    Query<Article> query = getSession().createQuery("from article_board where id = :id", Article.class);
     query.setParameter("id", articleId.value());
     return query.uniqueResult();
   }
   
   @Override
   public List<Article> findByBoardName(String boardname) {
-	  Query<Article> query = getSession().createQuery("from Article where boardname = :boardname", Article.class);
+	  Query<Article> query = getSession().createQuery("from article_board where boardname = :boardname", Article.class);
 	return query.getResultList();
   } 
 
