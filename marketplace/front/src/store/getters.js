@@ -1,4 +1,5 @@
-export const user = state => state.user
+export const user = state => state.user.name
+export const logged = state => state.user.authenticated
 
 export const hasBoards = state => {
   return state.boards.length > 0

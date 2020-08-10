@@ -6,8 +6,7 @@ import axios from 'axios'
 import vuetify from './plugins/vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import Vuelidate from 'vuelidate'
-import 'roboto-fontface/css/roboto/roboto-fontface.css'
-import '@mdi/font/css/materialdesignicons.css'
+import eventBus from './event-bus'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -28,6 +27,7 @@ axios.interceptors.response.use(
 )
 
 Vue.config.productionTip = false
+Vue.prototype.$bus = eventBus
 
 new Vue({
   router,
