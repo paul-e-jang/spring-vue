@@ -6,10 +6,10 @@ export default {
 
   fetchArticles (boardname) {
     return new Promise((resolve, reject) => {
-      axios.post('/user').then(({ data }) => {
+      axios.get('/'+boardname+'/articles').then(({ data }) => {
         resolve(data)
-        eventBus.$emit('myDataFetched', data)
         console.log(data)
+        eventBus.$emit('boardview', data)
       }).catch((error) => {
         reject(errorParser.parse(error))
       })

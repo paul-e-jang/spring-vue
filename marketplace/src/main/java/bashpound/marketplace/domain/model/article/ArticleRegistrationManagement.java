@@ -11,8 +11,8 @@ public class ArticleRegistrationManagement {
 	  this.repository = repository;
 	}
 
-public Article register(String boardname, String subject, String author, String content)
-   throws ArticleRegistrationException {
+	public Article register(String boardname, String subject, String author, String content)
+			throws ArticleRegistrationException {
 
 	    Article newArticle = Article.create(boardname, subject, author, content);
 	    repository.save(newArticle);

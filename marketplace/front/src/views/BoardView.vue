@@ -32,7 +32,14 @@
 </template>
 
 <script>
+import BoardService from '@/services/article'
+
 export default {
+  name: 'BoardView',
+  boardname: 'default',
+  created () {
+    BoardService.fetchArticles('default')
+  },
   data () {
     return {
       search: '',

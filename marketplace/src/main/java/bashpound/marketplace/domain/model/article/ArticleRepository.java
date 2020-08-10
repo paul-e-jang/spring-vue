@@ -7,15 +7,15 @@ public interface ArticleRepository {
   /**
    * Find board by its id
    *
-   * @param boardId the id of the board
-   * @return the board instance or null if it doesn't exist
+   * @param articleId the id of the board
+   * @return the article instance or null if it doesn't exist
    */
   Article findById(ArticleId articleId);
   
   /**
    * 
-   * @param boardname
-   * @return select * from articles where boardname = boardname
+   * @param boardname the name of the board
+   * @return articles
    */
   List<Article> findByBoardName(String boardname);
 

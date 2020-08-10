@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "ArticleBoard")
+@Table(name = "Article")
 public class Article extends AbstractBaseEntity {
 
   private static final long serialVersionUID = -7789177855101967490L;
