@@ -17,8 +17,6 @@
 <script>
 export default {
   name: 'UserMenu',
-  data () {
-  },
   computed: {
     Logged: function () {
       return Boolean(this.$store.getters.logged)

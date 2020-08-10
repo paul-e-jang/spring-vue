@@ -8,7 +8,6 @@ import 'vuetify/dist/vuetify.min.css'
 import Vuelidate from 'vuelidate'
 import eventBus from './event-bus'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 // axios bootstrap

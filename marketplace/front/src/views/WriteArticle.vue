@@ -15,7 +15,7 @@
             <div class="error" v-if="!$v.form.subject.maxLength">제목은 최대 {{$v.form.subject.$params.maxLength.max}} 글자입니다.</div>
         </div>
       </div>
-      <CKEditor />
+      <ckeditor :editor="editor" v-model="form.content" :config="editorConfig"></ckeditor>
       <div class="form-group row col-6 mx-auto">
         <div class="text-center mx-auto">
           <v-btn class="ma-2 mr-3" tile outlined color="success" type="submit">
@@ -32,28 +32,37 @@
         </div>
       </div>
       <div v-show="errorMessage" class="alert alert-danger failed">{{ errorMessage }}</div>
+      <b class="danger">**개발전용**</b>
+      폼 입력 바인딩 테스트<br>
+      form.subject: {{ form.subject }}<br>
+      form.content: {{ form.content }}<br>
+      form.author: {{ form.author }}<br>
+
     </form>
   </div>
 </template>
 
 <script>
-import CKEditor from '@/components/CKEditor.vue'
 import { required, maxLength } from 'vuelidate/lib/validators'
 import Write from '@/services/write'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import Vue from 'vue'
+import CKEditor from '@ckeditor/ckeditor5-vue'
+
+Vue.use(CKEditor)
 
 export default {
   name: 'WriteArticle',
-  components: {
-    CKEditor
-  },
   data () {
     return {
       form: {
         subject: '',
-        content: CKEditor.Editordata,
+        content: '',
         author: this.$store.state.user.name
       },
-      errorMessage: ''
+      errorMessage: '',
+      editor: ClassicEditor,
+      editorConfig: {}
     }
   },
   methods: {
