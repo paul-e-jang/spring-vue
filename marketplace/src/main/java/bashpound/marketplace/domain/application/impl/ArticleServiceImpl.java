@@ -39,7 +39,8 @@ public class ArticleServiceImpl implements ArticleService {
 	      command.getBoardname(),
 	      command.getAuthor(),
 	      command.getSubject(),
-	      command.getContent());
+	      command.getContent(),
+	      command.getViewed());
 	  }
 
 	  @Override

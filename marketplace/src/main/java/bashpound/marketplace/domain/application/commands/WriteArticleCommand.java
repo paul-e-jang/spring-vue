@@ -9,24 +9,27 @@ public class WriteArticleCommand extends AnonymousCommand{
 	private String subject;
 	private String content;
 	private String author;
+	private int viewed;
 
-	 public WriteArticleCommand(String boardname, String subject, String content, String author) {
+	 public WriteArticleCommand(String boardname, String subject, String content, String author, int viewed) {
 		Assert.hasText(boardname, "Parameter `boardname` must not be empty");
 		Assert.hasText(subject, "Parameter `subject` must not be empty");
 		Assert.hasText(content, "Parameter `content` must not be empty");
 		Assert.hasText(author, "Parameter `author` must not be empty");
+		Assert.hasText(viewed+"", "Parameter `viewed` must not be empty");
 		
 		this.boardname = boardname;
 	    this.subject = subject;
 	    this.content = content;
 	    this.author = author;
+	    this.viewed = viewed;
 	  }
 
-	
-	  public String getBoardname() {
+
+
+	public String getBoardname() {
 		return boardname;
 	}
-
 
 
 
@@ -36,11 +39,9 @@ public class WriteArticleCommand extends AnonymousCommand{
 
 
 
-
 	public String getContent() {
 		return content;
 	}
-
 
 
 
@@ -50,11 +51,15 @@ public class WriteArticleCommand extends AnonymousCommand{
 
 
 
+	public int getViewed() {
+		return viewed;
+	}
+
+
 
 	public void setBoardname(String boardname) {
 		this.boardname = boardname;
 	}
-
 
 
 
@@ -64,17 +69,23 @@ public class WriteArticleCommand extends AnonymousCommand{
 
 
 
-
 	public void setContent(String content) {
 		this.content = content;
 	}
 
 
 
-
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+
+
+
+	public void setViewed(int viewed) {
+		this.viewed = viewed;
+	}
+
+
 
 	@Override
 	  public int hashCode() {
@@ -87,6 +98,7 @@ public class WriteArticleCommand extends AnonymousCommand{
 	      "subject='" + subject + '\'' +
 	      ", author='" + author + '\'' +
 	      ", content='" + content + '\'' +
+	      ", viewed='" + viewed + '\'' +
 	      '}';
 	  }	
 	

@@ -11,10 +11,10 @@ public class ArticleRegistrationManagement {
 	  this.repository = repository;
 	}
 
-	public Article register(String boardname, String subject, String author, String content)
+	public Article register(String boardname, String subject, String author, String content, int viewed)
 			throws ArticleRegistrationException {
 
-	    Article newArticle = Article.create(boardname, subject, author, content);
+	    Article newArticle = Article.create(boardname, subject, author, content, viewed);
 	    repository.save(newArticle);
 	    return newArticle;
 	  }

@@ -32,19 +32,23 @@ public class Article extends AbstractBaseEntity {
   @Column(name = "created_date", nullable = false)
   private Date createdDate;
   
+  @Column(name = "viewed", nullable = false)
+  private int viewed;
+  
   public Article() {
   }
 
   /**
    * new Article publish
    */
-  public static Article create(String boardName, String author, String subject, String content) {
+  public static Article create(String boardName, String author, String subject, String content, int viewed) {
     Article article = new Article();
     article.boardName = boardName;
     article.author = author;
     article.subject = subject;
     article.content = content;
     article.createdDate = new Date();
+    article.viewed = 0;
     return article;
   }
 
@@ -72,6 +76,10 @@ public Date getCreatedDate() {
 	return createdDate;
 }
 
+public int getViewed() {
+	return viewed;
+}
+
 @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -91,6 +99,7 @@ public Date getCreatedDate() {
       ", author='" + author + '\'' +
       ", content=" + content +
       ", createdDate=" + createdDate +
+      ", viewed=" + viewed +
       '}';
   }
 

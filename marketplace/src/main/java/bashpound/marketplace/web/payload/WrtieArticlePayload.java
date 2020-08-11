@@ -19,9 +19,12 @@ public class WrtieArticlePayload {
 
   @NotNull
   private String author;
+  
+  @NotNull
+  private int viewed;
 
   public WriteArticleCommand toCommand() {
-    return new WriteArticleCommand(this.boardname, this.subject, this.content, this.author);
+    return new WriteArticleCommand(this.boardname, this.subject, this.content, this.author, this.viewed);
   }
 
 public String getBoardname() {
@@ -40,6 +43,10 @@ public String getAuthor() {
 	return author;
 }
 
+public int getViewed() {
+	return viewed;
+}
+
 public void setBoardname(String boardname) {
 	this.boardname = boardname;
 }
@@ -55,6 +62,12 @@ public void setContent(String content) {
 public void setAuthor(String author) {
 	this.author = author;
 }
+
+public void setViewed(int viewed) {
+	this.viewed = viewed;
+}
+
+
 
 
 
