@@ -6,7 +6,7 @@ export default {
 
   fetchArticles (boardname) {
     return new Promise((resolve, reject) => {
-      axios.get('/'+boardname+'/articles').then(({ data }) => {
+      axios.get('/' + boardname + '/articles').then(({ data }) => {
         resolve(data)
         console.log(data)
         eventBus.$emit('boardview', data)

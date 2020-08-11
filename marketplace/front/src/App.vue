@@ -35,8 +35,15 @@ body.modal-open[style] {
 <script>
 import Footer from '@/components/Footer.vue'
 import Header from '@/components/Header.vue'
+import authenticationService from './services/authentication'
 
 export default {
+  created() {
+    authenticationService.fetchuser()
+    this.$bus.$on('myDataFetched', data => {
+    this.$store.commit('updateMyData', data)
+    })
+  },
   components: {
     Footer,
     Header
