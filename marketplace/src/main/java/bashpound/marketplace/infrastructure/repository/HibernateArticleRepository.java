@@ -29,9 +29,9 @@ public class HibernateArticleRepository extends HibernateSupport implements Arti
   @Override
   public List<Article> findByBoardName(String boardname) {
 	  String sql = "select * from article where boardname = :boardname order by created_date desc";
-	    NativeQuery<Article> query = getSession().createNativeQuery(sql, Article.class);
-	    query.setParameter("boardname", boardname);
-	    return query.list();
+	  NativeQuery<Article> query = getSession().createNativeQuery(sql, Article.class);
+	  query.setParameter("boardname", boardname);
+	  return query.list();
   } 
 
   @Override

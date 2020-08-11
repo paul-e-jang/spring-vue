@@ -17,6 +17,7 @@ import bashpound.marketplace.domain.model.article.ArticleRegistrationManagement;
 import bashpound.marketplace.domain.model.article.ArticleRepository;
 
 @Service
+@Transactional
 public class ArticleServiceImpl implements ArticleService {
 
 	  private ArticleRegistrationManagement articleRegistrationManagement;
@@ -32,7 +33,6 @@ public class ArticleServiceImpl implements ArticleService {
 	  }
 
 	  @Override
-	  @Transactional
 	  public void register(WriteArticleCommand command) throws ArticleRegistrationException {
 	    Assert.notNull(command, "Parameter `command` must not be null");
 	    articleRegistrationManagement.register(
@@ -43,7 +43,6 @@ public class ArticleServiceImpl implements ArticleService {
 	  }
 
 	  @Override
-	  @Transactional
 	  public List<Article> findByBoardName(String boardname) throws ArticleLoadException{
 		return articleRepository.findByBoardName(boardname);
 	  }

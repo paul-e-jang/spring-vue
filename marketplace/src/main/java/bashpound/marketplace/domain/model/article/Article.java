@@ -10,7 +10,7 @@ import java.util.Objects;
 @Table(name = "Article")
 public class Article extends AbstractBaseEntity {
 
-  private static final long serialVersionUID = -7789177855101967490L;
+	private static final long serialVersionUID = 1520581166836481130L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
