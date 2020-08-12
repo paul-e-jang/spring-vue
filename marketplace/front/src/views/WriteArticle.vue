@@ -26,13 +26,13 @@
           </v-btn>
           <div>
           <b-modal id="modal-center" title="확인" centered content-class="shadow" @ok.prevent="goBack">
-            <p class="my-2">취소 후 되돌릴 수 없습니다. 취소하시겠습니까?</p>
+            <p class="my-2"> 되돌릴 수 없습니다. 취소하시겠습니까?</p>
           </b-modal>
           </div>
         </div>
       </div>
       <div v-show="errorMessage" class="alert alert-danger failed">{{ errorMessage }}</div>
-      <b>**개발전용**</b><br>
+      <b>**[DEBUG]**</b><br>
       폼 입력 바인딩 테스트<br>
       form.subject: {{ form.subject }}<br>
       form.content: {{ form.content }}<br>
@@ -45,7 +45,7 @@
 
 <script>
 import { required, maxLength } from 'vuelidate/lib/validators'
-import Write from '@/services/write'
+import ArticleService from '@/services/article'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import Vue from 'vue'
 import CKEditor from '@ckeditor/ckeditor5-vue'
@@ -74,8 +74,9 @@ export default {
         return
       }
 
-      Write.DoWrite(this.form)
+      ArticleService.DoWrite(this.form)
         .then(() => {
+          ArticleService.fetchArticles(this.form.boardname)
           this.$router.push({ path: 'BoardView' })
         })
         .catch((error) => {

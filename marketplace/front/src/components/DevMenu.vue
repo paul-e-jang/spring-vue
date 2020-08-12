@@ -8,12 +8,7 @@
 </template>
 
 <script>
-import BoardService from '@/services/article'
-
 export default {
-  name: 'DevMenu',
-  methods: {
-
-  }
+  name: 'DevMenu'
 }
 </script>

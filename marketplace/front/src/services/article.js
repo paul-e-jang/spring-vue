@@ -14,5 +14,14 @@ export default {
         reject(errorParser.parse(error))
       })
     })
+  },
+  DoWrite (detail) {
+    return new Promise((resolve, reject) => {
+      axios.post('/write', detail).then(({ data }) => {
+        resolve(data)
+      }).catch((error) => {
+        reject(errorParser.parse(error))
+      })
+    })
   }
 }
