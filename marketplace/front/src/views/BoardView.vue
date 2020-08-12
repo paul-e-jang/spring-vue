@@ -13,7 +13,7 @@
         hide-details
       ></v-text-field>
     </v-card-title>
-    <v-data-table :items="articles" :search="search" :sort-by="['created_date']"
+    <v-data-table :items="desserts" :search="search" :sort-by="['created_date']"
     calculated-widths="true" :headers="headers" :loading="loading" :dense="dense" class="px-4">
     <template v-slot:body="{ items }">
          <tbody>
@@ -33,19 +33,49 @@
   </v-card>
 </div>
 <div class="col-6">
-<v-card class="mx-auto border" id="boardview">
-   [DEBUG] Seleted: {{ selected }}
+<v-card class="mx-auto" id="boardview" outlined>
+   [DEBUG] Seleted author: {{ selected.author }}
    <v-divider />
-    <v-card-title class="text-left">
-      default | {{ selected }}
-      <v-subheader> 작성자: author | 조회: viewed | 댓글: int 작성일: createdDate </v-subheader>
+    <v-card-title class="text-left py-1">
+      {{ boardname }} | {{ selected.subject}}
     </v-card-title>
+    <v-subheader class="py-0 my-0"> 작성자: {{ selected.author }} | 조회: {{ selected.viewed }} | 댓글: {{ desserts.length }} 작성일: {{ selected.createdDate }} </v-subheader>
+    <v-divider class="py-0 my-0" />
+    <p class="text-left px-3 py-4" v-html="selected.content">  </p>
     <v-divider />
-    <p class="text-left" v-html="viewcontent">  </p>
+    <div class="text-right mx-3">
+      <v-btn text small class="mr-2" tile outlined>
+        수정
+      </v-btn>
+      <v-btn text small v-b-modal.modal-center class="mr-2" tile outlined>
+        삭제
+      </v-btn>
+      <v-btn class="mr-2" tile outlined text small>
+        글쓰기
+      </v-btn>
+    </div>
     <v-divider />
-    <div class="text-right mx-3">수정 | 삭제 | 글쓰기</div>
+    <div class="text-left px-2 mx-2"> 댓글 [ {{ desserts.length }} ] </div>
     <v-divider />
-    <div class="text-left border px-3 mx-3"> 댓글 </div>
+    <v-simple-table dense class="mb-2">
+    <template v-slot:default>
+      <tbody>
+        <tr v-for="item in desserts" :key="item.name">
+          <td class="text-left" width="20%">{{ item.author }}</td>
+          <td class="text-left" width="70%"> {{ item.content }}</td>
+          <td width="10">{{ item.createdDate }}</td>
+        </tr>
+      </tbody>
+    </template>
+  </v-simple-table>
+  <div>
+   <v-text-field
+            v-model="reply"
+            solo
+            label="Solo"
+            clearable
+   ></v-text-field>
+  </div>
   </v-card>
   </div>
    </div>
@@ -57,7 +87,6 @@ import DateParser from '@/utils/date-parser'
 
 export default {
   name: 'BoardView',
-  boardname: 'default',
   created () {
     this.Fetch()
   },
@@ -68,7 +97,8 @@ export default {
     today () { return this.timestamp.getDate() },
     parceTest () {
       return DateParser.ParceRefactor(this.time)
-    }
+    },
+    boardname () { return 'default' }
   },
   methods: {
     Fetch () {
@@ -82,20 +112,16 @@ export default {
       })
     },
     selectArticle (key) {
-      this.selected = key - 1
-      this.viewcontent = this.articles[this.selected].content
+      this.selected = this.desserts[key - 1]
     }
   },
   data () {
     return {
-      selected: '',
       search: '',
       height: 800,
       dense: true,
       loading: true,
-      timestamp: new Date(),
-      viewcontent: '',
-      time: '2020-08-10T03:39:33.874+00:00',
+      reply: '',
       headers: [
         {
           text: '번호',
@@ -109,12 +135,23 @@ export default {
         { text: '조회', value: 'viewed', sortable: false, width: '10%' }
       ],
       articles: [],
+      selected: '',
       desserts: [
         {
           no: '1',
           subject: 'Frozen Yogurt',
           viewed: 159,
-          content: '<br>tag applied<br>something<br>lorem'
+          content: 'tag applied<br>something<br>lorem',
+          author: 'eunhackjang',
+          createdDate: '22/35'
+        },
+        {
+          no: '2',
+          subject: 'Frozen Yogurt',
+          viewed: 159,
+          content: 'tag applied<br>something<br>lorem',
+          author: 'eunhackjang',
+          createdDate: '22/35'
         }
       ]
     }

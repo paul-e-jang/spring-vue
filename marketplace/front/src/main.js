@@ -12,8 +12,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 // axios bootstrap
 
-Vue.use(Vuelidate)
 Vue.use(BootstrapVue)
+Vue.use(Vuelidate)
 Vue.use(IconsPlugin)
 
 axios.defaults.baseURL = '/api'
