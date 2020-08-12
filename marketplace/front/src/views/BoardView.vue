@@ -68,14 +68,12 @@
       </tbody>
     </template>
   </v-simple-table>
-  <div>
-   <v-text-field
-            v-model="reply"
-            solo
-            label="Solo"
-            clearable
-   ></v-text-field>
-  </div>
+      <v-textarea
+      clearable
+      clear-icon="cancel"
+      label="Text"
+      value="This is clearable text."
+    ></v-textarea>
   </v-card>
   </div>
    </div>
@@ -120,7 +118,7 @@ export default {
       search: '',
       height: 800,
       dense: true,
-      loading: true,
+      loading: false,
       reply: '',
       headers: [
         {

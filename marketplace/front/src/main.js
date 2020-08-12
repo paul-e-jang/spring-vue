@@ -9,12 +9,14 @@ import Vuelidate from 'vuelidate'
 import eventBus from './event-bus'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import '@babel/polyfill'
 
 // axios bootstrap
 
 Vue.use(BootstrapVue)
 Vue.use(Vuelidate)
 Vue.use(IconsPlugin)
+Vue.use(vuetify)
 
 axios.defaults.baseURL = '/api'
 axios.defaults.headers.common.Accept = 'application/json'
