@@ -1,5 +1,5 @@
 export default {
-  ParceRefactor (date) {
+  ParseRefactor (date) {
     let output = 'date is not defined'
     const timestamp = new Date()
     const today = timestamp.getDate()

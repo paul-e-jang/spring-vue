@@ -36,7 +36,10 @@ public class Article extends AbstractBaseEntity {
   private int viewed;
   
   @Column(name="articlecode")
-  private int articlecode;
+  private int articleCode;
+  
+  @Column(name="replies")
+  private int replies;
   
   public Article() {
   }
@@ -52,7 +55,8 @@ public class Article extends AbstractBaseEntity {
     article.content = content;
     article.createdDate = new Date();
     article.viewed = 0;
-    article.articlecode = article.hashCode();
+    article.articleCode = article.hashCode();
+    article.replies = 0;
     return article;
   }
 
@@ -91,8 +95,13 @@ public int getViewed() {
 }
 
 public int getArticlecode() {
-	return articlecode;
+	return articleCode;
 }
+
+public int getReplies() {
+	return replies;
+}
+
 
 @Override
   public boolean equals(Object o) {
@@ -114,12 +123,13 @@ public int getArticlecode() {
       ", content=" + content +
       ", createdDate=" + createdDate +
       ", viewed=" + viewed +
-      ", articlecode=" + articlecode +
+      ", articleCode=" + articleCode +
+      ", replies=" + replies +
       '}';
   }
 
 @Override
 public int hashCode() {
-	return Objects.hash(this.id);
+	return Objects.hash(subject);
 }
 }

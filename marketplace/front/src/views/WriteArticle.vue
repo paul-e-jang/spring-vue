@@ -74,7 +74,7 @@ export default {
         return
       }
 
-      ArticleService.DoWrite(this.form)
+      ArticleService.writeArticle(this.form)
         .then(() => {
           ArticleService.fetchArticles(this.form.boardname)
           this.$router.push({ path: 'BoardView' })

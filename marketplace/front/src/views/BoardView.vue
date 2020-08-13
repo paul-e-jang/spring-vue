@@ -13,13 +13,13 @@
         hide-details
       ></v-text-field>
     </v-card-title>
-    <v-data-table :items="desserts" :search="search" :sort-by="['created_date']"
+    <v-data-table :items="articles" :search="search" :sort-by="['created_date']"
     calculated-widths="true" :headers="headers" :loading="loading" :dense="dense" class="px-4">
     <template v-slot:body="{ items }">
          <tbody>
-          <tr v-for="item in items" :key="item.no">
-            <td>{{ item.no }}</td>
-            <td class="text-left" @click.prevent="selectArticle(item.no)">{{ item.subject }}</td>
+          <tr v-for="(item, index) in items" :key="index">
+            <td>{{ index+1 }}</td>
+            <td class="text-left" @click.prevent="select(index)">{{ item.subject }} [{{ item.replies }}]</td>
             <td>{{ item.author }}</td>
             <td>{{ item.createdDate }}</td>
             <td>{{ item.viewed }}</td>
@@ -34,12 +34,12 @@
 </div>
 <div class="col-6">
 <v-card class="mx-auto" id="boardview" outlined>
-   [DEBUG] Seleted author: {{ selected.author }}
+   [DEBUG] Seleted articlecode: {{ selected.articlecode }}
    <v-divider />
     <v-card-title class="text-left py-1">
       {{ boardname }} | {{ selected.subject}}
     </v-card-title>
-    <v-subheader class="py-0 my-0"> 작성자: {{ selected.author }} | 조회: {{ selected.viewed }} | 댓글: {{ desserts.length }} 작성일: {{ selected.createdDate }} </v-subheader>
+    <v-subheader class="py-0 my-0"> 작성자: {{ selected.author }} | 조회: {{ selected.viewed }} | 댓글: {{ replies.length }} 작성일: {{ selected.createdDate }} </v-subheader>
     <v-divider class="py-0 my-0" />
     <p class="text-left px-3 py-4" v-html="selected.content">  </p>
     <v-divider />
@@ -47,7 +47,7 @@
       <v-btn text small class="mr-2" tile outlined>
         수정
       </v-btn>
-      <v-btn text small v-b-modal.modal-center class="mr-2" tile outlined>
+      <v-btn text small class="mr-2" tile outlined>
         삭제
       </v-btn>
       <v-btn class="mr-2" tile outlined text small to="/WriteArticle">
@@ -55,12 +55,12 @@
       </v-btn>
     </div>
     <v-divider />
-    <div class="text-left px-2 mx-2"> 댓글 [ {{ desserts.length }} ] </div>
+    <div class="text-left px-2 mx-2"> 댓글 [ {{ replies.length }} ] </div>
     <v-divider />
     <v-simple-table dense class="mb-2">
     <template v-slot:default>
       <tbody>
-        <tr v-for="item in desserts" :key="item.name">
+        <tr v-for="(item, index) in replies" :key="index">
           <td class="text-left" width="20%">{{ item.author }}</td>
           <td class="text-left" width="70%"> {{ item.content }}</td>
           <td width="10">{{ item.createdDate }}</td>
@@ -68,12 +68,18 @@
       </tbody>
     </template>
   </v-simple-table>
-  <form>
+  <form @submit.prevent="writeReply">
   <v-textarea outlined class="pa-3" name="input-7-1" label="댓글" counter dense rows="3"
       v-model="re.content" required auto-grow clearable clear-icon="mdi-close" />
       <v-btn class="mr-2" tile outlined text small type="submit">
         댓글 입력
       </v-btn>
+      <div v-show="errorMessage" class="alert alert-danger failed">{{ errorMessage }}</div>
+      <br>[DEBUG]<br>
+      댓글작성자: {{ re.author }}<br>
+      댓글내용: {{ re.content }}<br>
+      댓글작성일: {{ re.createdDate }}<br>
+      articlecode: {{ re.articlecode }}<br>
   </form>
   </v-card>
   </div>
@@ -88,30 +94,44 @@ export default {
   name: 'BoardView',
   created () {
     this.Fetch()
+    this.setRownum()
   },
-  watch: {
-    $route: 'Fetch'
+  updated () {
+    this.setRownum()
   },
   computed: {
     today () { return this.timestamp.getDate() },
-    parceTest () {
-      return DateParser.ParceRefactor(this.time)
-    },
     boardname () { return 'default' }
   },
   methods: {
     Fetch () {
       BoardService.fetchArticles('default')
-      this.$bus.$on('boardview', data => {
+      this.$bus.$on('articleLoad', data => {
         this.articles = data.articles
-        for (let i = this.articles.length - 1; i >= 0; i--) {
-          this.articles[i].no = i + 1
-          this.articles[i].createdDate = DateParser.ParceRefactor(this.articles[i].createdDate)
-        }
       })
     },
-    selectArticle (key) {
-      this.selected = this.desserts[key - 1]
+    setRownum () {
+      for (let i = 0; i < this.articles.length; i++) {
+        this.articles[i].createdDate = DateParser.ParseRefactor(this.articles[i].createdDate)
+      }
+    },
+    select (index) {
+      this.selected = this.articles[index]
+      this.selected.viewed++
+      this.re.articlecode = this.selected.articlecode
+      BoardService.fetchReplies(this.re.articlecode)
+      this.$bus.$on('replyLoad', data => {
+        this.replies = data.replies
+      })
+    },
+    writeReply () {
+      BoardService.writeReply(this.re)
+        .then(() => {
+          BoardService.fetchReplies(this.selected.articlecode)
+        })
+        .catch((error) => {
+          this.errorMessage = '댓글 등록에 실패했습니다.' + error.message
+        })
     }
   },
   data () {
@@ -121,6 +141,7 @@ export default {
       dense: true,
       loading: false,
       reply: '',
+      errorMessage: '',
       headers: [
         {
           text: '번호',
@@ -134,11 +155,13 @@ export default {
         { text: '조회', value: 'viewed', sortable: false, width: '10%' }
       ],
       articles: [],
-      selected: '',
+      replies: [],
+      allreplies: [],
+      selected: {},
       re: {
         content: '',
-        author: '',
-        createdDate: ''
+        author: this.$store.getters.user,
+        articlecode: ''
       },
       desserts: [
         {
@@ -147,7 +170,8 @@ export default {
           viewed: 159,
           content: 'tag applied<br>something<br>lorem',
           author: 'eunhackjang',
-          createdDate: '22/35'
+          createdDate: '22/35',
+          articleCode: '32'
         },
         {
           no: '2',
@@ -155,7 +179,8 @@ export default {
           viewed: 159,
           content: 'tag applied<br>something<br>lorem',
           author: 'eunhackjang',
-          createdDate: '22/35'
+          createdDate: '22/35',
+          articleCode: '32'
         }
       ]
     }

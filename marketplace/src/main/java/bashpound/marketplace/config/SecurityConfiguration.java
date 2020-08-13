@@ -25,7 +25,7 @@ import bashpound.marketplace.domain.common.security.ApiRequestAccessDeniedExcept
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   private static final String[] PUBLIC = new String[]{
-    "/", "/error", "/loginpage", "/api/logout", "/register", "/api/registrations", "/api/write", "/api/WriteArticle", "/api/default/articles"};
+    "/", "/error", "/loginpage", "/api/logout", "/register", "/api/registrations", "/api/writeReply", "/api/wrtieArticle", "/api/default/articles"};
 
 
 

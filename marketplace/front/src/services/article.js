@@ -9,15 +9,35 @@ export default {
       axios.get('/' + boardname + '/articles').then(({ data }) => {
         resolve(data)
         console.log(data)
-        eventBus.$emit('boardview', data)
+        eventBus.$emit('articleLoad', data)
       }).catch((error) => {
         reject(errorParser.parse(error))
       })
     })
   },
-  DoWrite (detail) {
+  fetchReplies (articlecode) {
     return new Promise((resolve, reject) => {
-      axios.post('/write', detail).then(({ data }) => {
+      axios.get('/' + articlecode + '/replies').then(({ data }) => {
+        resolve(data)
+        console.log(data)
+        eventBus.$emit('replyLoad', data)
+      }).catch((error) => {
+        reject(errorParser.parse(error))
+      })
+    })
+  },
+  writeArticle (detail) {
+    return new Promise((resolve, reject) => {
+      axios.post('/writeArticle', detail).then(({ data }) => {
+        resolve(data)
+      }).catch((error) => {
+        reject(errorParser.parse(error))
+      })
+    })
+  },
+  writeReply (detail) {
+    return new Promise((resolve, reject) => {
+      axios.post('/writeReply', detail).then(({ data }) => {
         resolve(data)
       }).catch((error) => {
         reject(errorParser.parse(error))
