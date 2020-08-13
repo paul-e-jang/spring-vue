@@ -6,12 +6,11 @@ module.exports = {
     entry: {
       app: './src/main.js',
       style: [
-        'bootstrap/dist/css/bootstrap.min.css'
+        'vuetify/dist/vuetify.min.css'
       ]
     }
   },
   transpileDependencies: [
-    'vuetify',
-
+    'vuetify'
   ]
 }

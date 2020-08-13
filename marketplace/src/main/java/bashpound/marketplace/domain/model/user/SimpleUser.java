@@ -74,7 +74,7 @@ public class SimpleUser implements UserDetails, Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(username);
+    return Objects.hash(userId);
   }
 
   @Override

@@ -16,19 +16,14 @@ public class LoginSessionController {
     @RequestMapping(value="/api/user", produces= MediaType.APPLICATION_JSON_VALUE)
     public String getCurrentMemberJson(Model model, @CurrentUser SimpleUser user) {
       	
-    	String currentuser = "Guest";
-    	if (user != null) {
-    		currentuser = user.getUsername();
-    	}
+    	String currentUser = "Guest";
     	
-    	model.addAttribute("user", currentuser);
-        
-        boolean authenticated = false;
-        if (user.getUsername() != null) {
-        	authenticated = true;
-        }
-        
-        model.addAttribute("authenticated", authenticated);
+    	if (user != null) {
+    		currentUser = user.getUsername();
+        	model.addAttribute("user", currentUser);
+            model.addAttribute("usercode", currentUser.hashCode());
+            model.addAttribute("authenticated", true);
+    	}
         
         return "jsonmembertemplate";
     }

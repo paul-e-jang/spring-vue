@@ -35,6 +35,9 @@ public class Article extends AbstractBaseEntity {
   @Column(name = "viewed", nullable = false)
   private int viewed;
   
+  @Column(name="articlecode")
+  private int articlecode;
+  
   public Article() {
   }
 
@@ -49,11 +52,18 @@ public class Article extends AbstractBaseEntity {
     article.content = content;
     article.createdDate = new Date();
     article.viewed = 0;
+    article.articlecode = article.hashCode();
     return article;
   }
 
-public ArticleId getArticleId() {
-	return new ArticleId(id);
+
+
+public static long getSerialversionuid() {
+	return serialVersionUID;
+}
+
+public Long getId() {
+	return id;
 }
 
 public String getBoardName() {
@@ -80,6 +90,10 @@ public int getViewed() {
 	return viewed;
 }
 
+public int getArticlecode() {
+	return articlecode;
+}
+
 @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -100,11 +114,12 @@ public int getViewed() {
       ", content=" + content +
       ", createdDate=" + createdDate +
       ", viewed=" + viewed +
+      ", articlecode=" + articlecode +
       '}';
   }
 
 @Override
 public int hashCode() {
-	return Objects.hash(author, subject);
+	return Objects.hash(this.id);
 }
 }

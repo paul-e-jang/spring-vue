@@ -1,5 +1,6 @@
 export const user = state => state.user.name
 export const logged = state => state.user.authenticated
+export const usercode = state => state.user.usercode
 
 export const hasBoards = state => {
   return state.boards.length > 0

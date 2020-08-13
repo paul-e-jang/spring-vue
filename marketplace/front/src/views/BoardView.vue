@@ -3,7 +3,7 @@
   <div class="col-6">
   <v-card class="mx-auto border" id="boardview" outlined>
     <v-card-title>
-      Default 게시판 <font color="red">[DEBUG] Test: {{ parceTest }} </font>
+      Default 게시판 <font color="red">[DEBUG] Test_usercode: {{ this.$store.getters.usercode }} </font>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -50,7 +50,7 @@
       <v-btn text small v-b-modal.modal-center class="mr-2" tile outlined>
         삭제
       </v-btn>
-      <v-btn class="mr-2" tile outlined text small>
+      <v-btn class="mr-2" tile outlined text small to="/WriteArticle">
         글쓰기
       </v-btn>
     </div>
@@ -68,12 +68,13 @@
       </tbody>
     </template>
   </v-simple-table>
-      <v-textarea
-      clearable
-      clear-icon="cancel"
-      label="Text"
-      value="This is clearable text."
-    ></v-textarea>
+  <form>
+  <v-textarea outlined class="pa-3" name="input-7-1" label="댓글" counter dense rows="3"
+      v-model="re.content" required auto-grow clearable clear-icon="mdi-close" />
+      <v-btn class="mr-2" tile outlined text small type="submit">
+        댓글 입력
+      </v-btn>
+  </form>
   </v-card>
   </div>
    </div>
@@ -134,6 +135,11 @@ export default {
       ],
       articles: [],
       selected: '',
+      re: {
+        content: '',
+        author: '',
+        createdDate: ''
+      },
       desserts: [
         {
           no: '1',

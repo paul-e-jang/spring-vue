@@ -3,20 +3,23 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from 'axios'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import vuetify from './plugins/vuetify'
-import 'vuetify/dist/vuetify.min.css'
+import Vuetify from 'vuetify/lib'
 import Vuelidate from 'vuelidate'
 import eventBus from './event-bus'
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 import '@babel/polyfill'
 
 // axios bootstrap
 
-Vue.use(BootstrapVue)
 Vue.use(Vuelidate)
-Vue.use(IconsPlugin)
-Vue.use(vuetify)
+Vue.use(Vuetify)
+
+export default new Vuetify({
+  icons: {
+    iconfont: 'mdiSvg'
+  }
+})
 
 axios.defaults.baseURL = '/api'
 axios.defaults.headers.common.Accept = 'application/json'
