@@ -19,7 +19,7 @@
          <tbody>
           <tr v-for="(item, index) in items" :key="index">
             <td>{{ index+1 }}</td>
-            <td class="text-left" @click.prevent="select(index)">{{ item.subject }} [{{ item.replies }}]</td>
+            <td class="text-left" @click.prevent="select(index)">{{ item.subject }} <span v-if="item.replies"> [{{ item.replies }}] </span> </td>
             <td>{{ item.author }}</td>
             <td>{{ item.createdDate }}</td>
             <td>{{ item.viewed }}</td>
@@ -34,7 +34,7 @@
 </div>
 <div class="col-6">
 <v-card class="mx-auto" id="boardview" outlined>
-   [DEBUG] Seleted articlecode: {{ selected.articlecode }}
+   [DEBUG] Seleted id: {{ selected.id }}
    <v-divider />
     <v-card-title class="text-left py-1">
       {{ boardname }} | {{ selected.subject}}
@@ -79,7 +79,7 @@
       댓글작성자: {{ re.author }}<br>
       댓글내용: {{ re.content }}<br>
       댓글작성일: {{ re.createdDate }}<br>
-      articlecode: {{ re.articlecode }}<br>
+      id: {{ re.articleId }}<br>
   </form>
   </v-card>
   </div>
@@ -94,13 +94,15 @@ export default {
   name: 'BoardView',
   created () {
     this.Fetch()
-    this.setRownum()
+    this.setDateFormat()
+  },
+  beforeUpdate () {
+    this.setDateFormat()
   },
   updated () {
-    this.setRownum()
+    this.setDateFormat()
   },
   computed: {
-    today () { return this.timestamp.getDate() },
     boardname () { return 'default' }
   },
   methods: {
@@ -110,16 +112,17 @@ export default {
         this.articles = data.articles
       })
     },
-    setRownum () {
+    setDateFormat () {
       for (let i = 0; i < this.articles.length; i++) {
         this.articles[i].createdDate = DateParser.ParseRefactor(this.articles[i].createdDate)
       }
     },
     select (index) {
       this.selected = this.articles[index]
-      this.selected.viewed++
-      this.re.articlecode = this.selected.articlecode
-      BoardService.fetchReplies(this.re.articlecode)
+      this.re.articleId = this.selected.id
+      console.log(this.selected)
+      BoardService.viewedUpdate(this.re.articleId, 'pp')
+      BoardService.fetchReplies(this.re.articleId)
       this.$bus.$on('replyLoad', data => {
         this.replies = data.replies
       })
@@ -127,7 +130,9 @@ export default {
     writeReply () {
       BoardService.writeReply(this.re)
         .then(() => {
-          BoardService.fetchReplies(this.selected.articlecode)
+          BoardService.repliesUpdate(this.re.articleId, 'pp')
+          BoardService.fetchReplies(this.re.articleId)
+          this.re.content = ''
         })
         .catch((error) => {
           this.errorMessage = '댓글 등록에 실패했습니다.' + error.message
@@ -161,7 +166,7 @@ export default {
       re: {
         content: '',
         author: this.$store.getters.user,
-        articlecode: ''
+        articleId: ''
       },
       desserts: [
         {
@@ -171,7 +176,7 @@ export default {
           content: 'tag applied<br>something<br>lorem',
           author: 'eunhackjang',
           createdDate: '22/35',
-          articleCode: '32'
+          id: '32'
         },
         {
           no: '2',
@@ -180,7 +185,7 @@ export default {
           content: 'tag applied<br>something<br>lorem',
           author: 'eunhackjang',
           createdDate: '22/35',
-          articleCode: '32'
+          id: '32'
         }
       ]
     }

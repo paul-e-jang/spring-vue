@@ -18,6 +18,7 @@ import bashpound.marketplace.domain.model.article.ArticleRegistrationManagement;
 import bashpound.marketplace.domain.model.article.Reply;
 import bashpound.marketplace.domain.model.article.ReplyRepository;
 import bashpound.marketplace.domain.model.article.ArticleRepository;
+import bashpound.marketplace.domain.model.article.ExecuteUpdateException;
 
 @Service
 @Transactional
@@ -55,7 +56,7 @@ public class ArticleServiceImpl implements ArticleService {
 	    articleRegistrationManagement.replyRegister(
 	      command.getAuthor(),
 	      command.getContent(),
-	      command.getArticlecode()
+	      command.getArticleId()
 	      );
 		}
 
@@ -65,9 +66,19 @@ public class ArticleServiceImpl implements ArticleService {
 	  }
 
 	  @Override
-	  public List<Reply> findRepliesByArticleCode(String articlecode) throws ArticleLoadException {
-		return replyRepository.findByArticleCode(articlecode);
+	  public List<Reply> findRepliesByArticleCode(Long id) throws ArticleLoadException {
+		return replyRepository.findByArticleCode(id);
 	  }
+
+	@Override
+	public void updateReplies(Long id, int i) throws ExecuteUpdateException {
+		articleRepository.updateReplies(id, i);
+	}
+
+	@Override
+	public void updateViews(Long id, int i) throws ExecuteUpdateException {
+		articleRepository.updateViews(id, i);
+	}
 
 
 	  

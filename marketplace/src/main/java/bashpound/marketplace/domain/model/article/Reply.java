@@ -26,8 +26,8 @@ public class Reply extends AbstractBaseEntity {
   @Column(name = "createddate", nullable = false)
   private Date createddate;
   
-  @Column(name="articlecode")
-  private int articlecode;
+  @Column(name="articleid")
+  private Long articleId;
   
   @Column(name="replycode")
   private int replycode;
@@ -38,12 +38,12 @@ public class Reply extends AbstractBaseEntity {
   /**
    * new Article publish
    */
-  public static Reply create(String author, String content, int articlecode) {
+  public static Reply create(String author, String content, Long articleId) {
     Reply articleReply = new Reply();
     articleReply.author = author;
     articleReply.content = content;
     articleReply.createddate = new Date();
-    articleReply.articlecode = articlecode;
+    articleReply.articleId = articleId;
     articleReply.replycode = articleReply.hashCode();
     return articleReply;
   }
@@ -65,8 +65,8 @@ public Date getCreatedDate() {
 	return createddate;
 }
 
-public int getArticlecode() {
-	return articlecode;
+public Long getArticleId() {
+	return articleId;
 }
 
 public int getReplycode() {
@@ -86,17 +86,16 @@ public int getReplycode() {
   @Override
   public String toString() {
     return "ArticleReply{" +
-      "id=" + id +
+      "id=" + this.getId() +
       ", author='" + author + '\'' +
       ", content=" + content +
       ", createdDate=" + createddate +
-      ", articlecode=" + articlecode +
-      ", replycode=" + replycode +
+      ", articleId=" + articleId +
       '}';
   }
 
 @Override
 public int hashCode() {
-	return Objects.hash(this.id);
+	return Objects.hash(this.author);
 }
 }

@@ -10,7 +10,7 @@ public interface ReplyRepository {
    * @param boardname the name of the board
    * @return articles
    */
-  List<Reply> findByArticleCode(String articleCode);
+  List<Reply> findByArticleCode(Long id);
 
   /**
    * Save a board

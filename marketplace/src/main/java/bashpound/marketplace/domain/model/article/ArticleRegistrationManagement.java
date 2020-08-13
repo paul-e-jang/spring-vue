@@ -21,10 +21,10 @@ public class ArticleRegistrationManagement {
 	    return newArticle;
 	  }
 	
-	public Reply replyRegister(String author, String content, int articlecode)
+	public Reply replyRegister(String author, String content, Long articleId)
 			throws ArticleRegistrationException {
 		
-	    Reply newReply = Reply.create(author, content, articlecode);
+	    Reply newReply = Reply.create(author, content, articleId);
 	    replyRepository.save(newReply);
 	    return newReply;
 	  }

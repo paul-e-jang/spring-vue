@@ -12,10 +12,10 @@ public class WrtieReplyPayload {
   private String author;
   
   @NotNull
-  private int articlecode;
+  private Long articleId;
 
   public WriteReplyCommand toCommand() {
-    return new WriteReplyCommand(this.author, this.content, this.articlecode);
+    return new WriteReplyCommand(this.author, this.content, this.articleId);
   }
 
 public String getContent() {
@@ -26,8 +26,8 @@ public String getAuthor() {
 	return author;
 }
 
-public int getArticlecode() {
-	return articlecode;
+public Long getArticleId() {
+	return articleId;
 }
 
 public void setContent(String content) {
@@ -38,8 +38,8 @@ public void setAuthor(String author) {
 	this.author = author;
 }
 
-public void setArticlecode(int articlecode) {
-	this.articlecode = articlecode;
+public void setArticlecode(Long articleId) {
+	this.articleId = articleId;
 }
 
 

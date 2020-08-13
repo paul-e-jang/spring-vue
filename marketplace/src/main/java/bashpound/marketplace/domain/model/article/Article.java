@@ -35,9 +35,6 @@ public class Article extends AbstractBaseEntity {
   @Column(name = "viewed", nullable = false)
   private int viewed;
   
-  @Column(name="articlecode")
-  private int articleCode;
-  
   @Column(name="replies")
   private int replies;
   
@@ -55,16 +52,9 @@ public class Article extends AbstractBaseEntity {
     article.content = content;
     article.createdDate = new Date();
     article.viewed = 0;
-    article.articleCode = article.hashCode();
-    article.replies = 0;
     return article;
   }
 
-
-
-public static long getSerialversionuid() {
-	return serialVersionUID;
-}
 
 public Long getId() {
 	return id;
@@ -94,9 +84,6 @@ public int getViewed() {
 	return viewed;
 }
 
-public int getArticlecode() {
-	return articleCode;
-}
 
 public int getReplies() {
 	return replies;
@@ -116,14 +103,13 @@ public int getReplies() {
   @Override
   public String toString() {
     return "Article{" +
-      "id=" + id +
+      "id=" + this.getId() +
       ", boardName='" + boardName + '\'' +
       ", subject='" + subject + '\'' +
       ", author='" + author + '\'' +
       ", content=" + content +
       ", createdDate=" + createdDate +
       ", viewed=" + viewed +
-      ", articleCode=" + articleCode +
       ", replies=" + replies +
       '}';
   }

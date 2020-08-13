@@ -43,5 +43,23 @@ export default {
         reject(errorParser.parse(error))
       })
     })
+  },
+  viewedUpdate (id, how) {
+    return new Promise((resolve, reject) => {
+      axios.post('/view/' + id + '/' + how).then(({ data }) => {
+        resolve(data)
+      }).catch((error) => {
+        reject(errorParser.parse(error))
+      })
+    })
+  },
+  repliesUpdate (id, how) {
+    return new Promise((resolve, reject) => {
+      axios.post('/reply/' + id + '/' + how).then(({ data }) => {
+        resolve(data)
+      }).catch((error) => {
+        reject(errorParser.parse(error))
+      })
+    })
   }
 }

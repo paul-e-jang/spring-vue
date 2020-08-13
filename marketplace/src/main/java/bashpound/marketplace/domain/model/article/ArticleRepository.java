@@ -25,4 +25,6 @@ public interface ArticleRepository {
    * @param board the board to save
    */
   void save(Article article);
+  void updateReplies(Long id, int i) throws ExecuteUpdateException;
+  void updateViews(Long id, int i) throws ExecuteUpdateException;
 }
