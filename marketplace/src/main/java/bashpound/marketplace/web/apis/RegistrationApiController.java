@@ -1,9 +1,13 @@
 package bashpound.marketplace.web.apis;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import bashpound.marketplace.domain.application.UserService;
 import bashpound.marketplace.domain.model.user.EmailAddressExistsException;
@@ -38,5 +42,11 @@ public class RegistrationApiController {
       }
       return Result.failure(errorMessage);
     }
+  }
+  
+  @RequestMapping(value="/api/registrations/check/{param}/{value}", produces= MediaType.APPLICATION_JSON_VALUE)
+  public String check(Model model, @PathVariable("param") String param, @PathVariable("value") String value) {
+      model.addAttribute("paramAlreadyExists", service.checkAlready(param, value));
+      return "jsonmembertemplate";
   }
 }

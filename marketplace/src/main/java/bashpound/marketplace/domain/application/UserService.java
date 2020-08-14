@@ -27,6 +27,11 @@ public interface UserService extends UserDetailsService{
    */
   void register(RegisterCommand command) throws RegistrationException;
   
-
-  
+  /**
+   * 
+   * @param param
+   * @param value
+   * @return boolean check if param of value already exists in DB
+   */
+  boolean checkAlready(String param, String value);
 }

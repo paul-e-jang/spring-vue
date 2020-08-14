@@ -13,8 +13,17 @@
 
     <v-stepper v-model="stage" vertical id="stepper" class="pa-5">
       <div><img src="../assets/svcLogoWithoutFrames.svg" class="img-fluid pa-3" alt="Logo" width="200" height="50"/></div>
-      <v-sheet class="headline" text> 회원 가입 </v-sheet>
-      <div v-show="errorMessage" class="alert alert-danger failed my-4">{{ errorMessage }}</div>
+      <v-sheet class="headline mb-2" text> 회원 가입 </v-sheet>
+          <v-alert
+          v-show="errorMessage"
+      border="left"
+      colored-border
+      type="error"
+      dense
+      outlined
+    >
+      {{ errorMessage }}
+    </v-alert>
     <v-stepper-step step="1" :complete="stage > 1">
       Terms of Service
     </v-stepper-step>
@@ -69,6 +78,7 @@
       placeholder="6글자 이상, 영문 대/소문자 및 숫자"
       required
       maxlength="20"
+      @blur="errorMessage=null, check(username, form.username)"
     ></v-text-field>
 
     <v-text-field
@@ -78,6 +88,7 @@
       label="E-mail"
       placeholder=" "
       required
+      @blur="check(emailAddress, form.emailAddress)"
     ></v-text-field>
 
     <v-text-field
@@ -260,14 +271,14 @@ export default {
       this.$refs.emailAddress.validate()) {
         this.stage = 3
       } else if (this.stage === 3 && this.$refs.name.validate() && this.$refs.nickName.validate()) {
-        this.stage = 4
+        console.log(this.form)
         registrationService.register(this.form).then(() => {
-          this.$router.push({ name: 'LoginPage' })
+          this.stage = 4
+          this.countDown()
         }).catch((error) => {
-          this.errorMessage = 'Failed to register user. ' + error.message
+          this.errorMessage = '유저 등록에 실패했습니다. ' + error.message
           this.stage = 2
         })
-        this.countDown()
       }
     },
     countDown () {
@@ -283,6 +294,12 @@ export default {
         this.$refs.form.reset()
         this.$refs.form2.reset()
       }
+    },
+    check (param, value) {
+      registrationService.checkAlready(param, value)
+        this.$bus.$on('alreadyExists', data => {
+        return data.paramAlreadyExists
+      })
     }
   }
 }

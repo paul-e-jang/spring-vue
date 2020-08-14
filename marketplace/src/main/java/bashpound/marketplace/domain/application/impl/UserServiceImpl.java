@@ -85,5 +85,18 @@ public class UserServiceImpl implements UserService {
 	    );
 	  }
 
+	@Override
+	public boolean checkAlready(String param, String value) {
+		boolean judge = false;
+		if (param.equals("emailAddress")) {
+			Users foundUser = userRepository.findByEmailAddress(value);
+			judge = (foundUser != null) ? true : false; 
+		}else if(param.equals("username")){
+			Users foundUser = userRepository.findByUsername(value);
+			judge = (foundUser != null) ? true : false;
+		}
+		return judge;
+	}
+
 
 }

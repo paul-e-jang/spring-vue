@@ -21,11 +21,11 @@ public class RegistrationPayload {
   @NotNull
   private String password;
   
-  @Size(min = 10, max = 30, message = "이름은 최대 10글자 입니다.")
+  @Size(max = 10, message = "이름은 최대 10글자 입니다.")
   @NotNull
   private String name;
   
-  @Size(min = 10, max = 30, message = "닉네임은 최대 10글자 입니다.")
+  @Size(max = 10, message = "닉네임은 최대 10글자 입니다.")
   @NotNull
   private String nickName;
 
