@@ -263,6 +263,11 @@ export default {
         this.stage = 3
       } else if (this.stage === 3 && this.$refs.firstName.validate() && this.$refs.lastName.validate()) {
         this.stage = 4
+          registrationService.register(this.form).then(() => {
+        this.$router.push({ name: 'LoginPage' })
+      }).catch((error) => {
+        this.errorMessage = 'Failed to register user. ' + error.message
+      })
         this.countDown()
       }
     },
