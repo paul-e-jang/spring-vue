@@ -9,15 +9,21 @@ public class RegisterCommand extends AnonymousCommand {
   private String username;
   private String emailAddress;
   private String password;
+  private String firstName;
+  private String lastName;
 
-  public RegisterCommand(String username, String emailAddress, String password) {
+  public RegisterCommand(String username, String emailAddress, String password, String firstName, String lastName) {
     Assert.hasText(username, "Parameter `username` must not be empty");
     Assert.hasText(emailAddress, "Parameter `emailAddress` must not be empty");
     Assert.hasText(password, "Parameter `password` must not be empty");
+    Assert.hasText(firstName, "Parameter `firatName` must not be empty");
+    Assert.hasText(lastName, "Parameter `lastName` must not be empty");
 
     this.username = username;
     this.emailAddress = emailAddress;
     this.password = password;
+    this.firstName = firstName;
+    this.lastName = lastName;
   }
 
   public String getUsername() {
@@ -31,8 +37,17 @@ public class RegisterCommand extends AnonymousCommand {
   public String getPassword() {
     return this.password;
   }
+  
 
-  @Override
+  public String getFirstName() {
+	return firstName;
+}
+
+public String getLastName() {
+	return lastName;
+}
+
+@Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (!(o instanceof RegisterCommand)) return false;
@@ -53,6 +68,8 @@ public class RegisterCommand extends AnonymousCommand {
       "username='" + username + '\'' +
       ", emailAddress='" + emailAddress + '\'' +
       ", password='" + password + '\'' +
+      ", firstName='" + firstName + '\'' +
+      ", lastName='" + lastName + '\'' +
       '}';
   }
 }

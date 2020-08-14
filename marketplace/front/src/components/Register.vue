@@ -194,6 +194,7 @@
 </template>
 
 <script>
+import registrationService from '@/services/registration'
 
 export default {
   data () {
