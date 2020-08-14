@@ -30,11 +30,11 @@ public class RegistrationApiController {
       service.register(payload.toCommand());
       return Result.created();
     } catch (RegistrationException e) {
-      String errorMessage = "Registration failed";
+      String errorMessage = "유저 등록에 실패했습니다. 이유:";
       if (e instanceof UsernameExistsException) {
-        errorMessage = "Username already exists";
+        errorMessage = "이미 등록된 아이디입니다.";
       } else if (e instanceof EmailAddressExistsException) {
-        errorMessage = "Email address already exists";
+        errorMessage = "이미 등록된 이메일입니다.";
       }
       return Result.failure(errorMessage);
     }

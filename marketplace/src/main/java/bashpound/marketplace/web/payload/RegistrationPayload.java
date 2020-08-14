@@ -23,14 +23,14 @@ public class RegistrationPayload {
   
   @Size(min = 10, max = 30, message = "이름은 최대 10글자 입니다.")
   @NotNull
-  private String firstName;
+  private String name;
   
   @Size(min = 10, max = 30, message = "닉네임은 최대 10글자 입니다.")
   @NotNull
-  private String lastName;
+  private String nickName;
 
   public RegisterCommand toCommand() {
-    return new RegisterCommand(this.username, this.emailAddress, this.password, this.firstName, this.lastName);
+    return new RegisterCommand(this.username, this.emailAddress, this.password, this.name, this.nickName);
   }
 
 public String getUsername() {
@@ -45,12 +45,12 @@ public String getPassword() {
 	return password;
 }
 
-public String getFirstName() {
-	return firstName;
+public String getname() {
+	return name;
 }
 
-public String getLastName() {
-	return lastName;
+public String getnickName() {
+	return nickName;
 }
 
 public void setUsername(String username) {
@@ -65,12 +65,12 @@ public void setPassword(String password) {
 	this.password = password;
 }
 
-public void setFirstName(String firstName) {
-	this.firstName = firstName;
+public void setname(String name) {
+	this.name = name;
 }
 
-public void setLastName(String lastName) {
-	this.lastName = lastName;
+public void setnickName(String nickName) {
+	this.nickName = nickName;
 }
 
 }

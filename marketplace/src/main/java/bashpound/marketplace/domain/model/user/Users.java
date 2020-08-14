@@ -26,11 +26,11 @@ public class Users extends AbstractBaseEntity {
   @Column(name = "password", nullable = false, length = 60)
   private String password;
 
-  @Column(name = "first_name", nullable = true, length = 45)
-  private String firstName;
+  @Column(name = "name", nullable = true, length = 45)
+  private String name;
 
-  @Column(name = "last_name", nullable = true, length = 45)
-  private String lastName;
+  @Column(name = "nickName", nullable = true, length = 45)
+  private String nickName;
 
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "created_date", nullable = false)
@@ -40,13 +40,13 @@ public class Users extends AbstractBaseEntity {
   }
 
 
-  public static Users create(String username, String emailAddress, String password) {
+  public static Users create(String username, String emailAddress, String password, String name, String nickName) {
     Users users = new Users();
     users.username = username;
     users.emailAddress = emailAddress;
     users.password = password;
-    users.firstName = "";
-    users.lastName = "";
+    users.name = name;
+    users.nickName = nickName;
     users.createdDate = new Date();
     return users;
   }
@@ -67,21 +67,21 @@ public class Users extends AbstractBaseEntity {
     return password;
   }
 
-  public String getFirstName() {
-    return firstName;
+
+  public String getName() {
+	return name;
   }
 
-  public String getLastName() {
-    return lastName;
+
+  public String getNickName() {
+	return nickName;
   }
 
-  public Date getCreatedDate() {
+
+	public Date getCreatedDate() {
     return createdDate;
   }
   
-  public String getInitials() {
-	    return (firstName.substring(0, 1) + lastName.substring(0, 1)).toUpperCase();
-  }
 
   @Override
   public boolean equals(Object o) {
@@ -104,8 +104,8 @@ public class Users extends AbstractBaseEntity {
       ", username='" + username + '\'' +
       ", emailAddress='" + emailAddress + '\'' +
       ", password=<Protected> " +
-      ", firstName='" + firstName + '\'' +
-      ", lastName='" + lastName + '\'' +
+      ", name='" + name + '\'' +
+      ", nickName='" + nickName + '\'' +
       ", createdDate=" + createdDate +
       '}';
   }

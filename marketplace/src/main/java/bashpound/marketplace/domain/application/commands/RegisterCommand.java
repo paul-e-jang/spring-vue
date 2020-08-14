@@ -9,21 +9,21 @@ public class RegisterCommand extends AnonymousCommand {
   private String username;
   private String emailAddress;
   private String password;
-  private String firstName;
-  private String lastName;
+  private String name;
+  private String nickName;
 
-  public RegisterCommand(String username, String emailAddress, String password, String firstName, String lastName) {
+  public RegisterCommand(String username, String emailAddress, String password, String name, String nickName) {
     Assert.hasText(username, "Parameter `username` must not be empty");
     Assert.hasText(emailAddress, "Parameter `emailAddress` must not be empty");
     Assert.hasText(password, "Parameter `password` must not be empty");
-    Assert.hasText(firstName, "Parameter `firatName` must not be empty");
-    Assert.hasText(lastName, "Parameter `lastName` must not be empty");
+    Assert.hasText(name, "Parameter `firatName` must not be empty");
+    Assert.hasText(nickName, "Parameter `lastName` must not be empty");
 
     this.username = username;
     this.emailAddress = emailAddress;
     this.password = password;
-    this.firstName = firstName;
-    this.lastName = lastName;
+    this.name = name;
+    this.nickName = nickName;
   }
 
   public String getUsername() {
@@ -39,12 +39,12 @@ public class RegisterCommand extends AnonymousCommand {
   }
   
 
-  public String getFirstName() {
-	return firstName;
+  public String getname() {
+	return this.name;
 }
 
-public String getLastName() {
-	return lastName;
+public String getNickName() {
+	return this.nickName;
 }
 
 @Override
@@ -68,8 +68,8 @@ public String getLastName() {
       "username='" + username + '\'' +
       ", emailAddress='" + emailAddress + '\'' +
       ", password='" + password + '\'' +
-      ", firstName='" + firstName + '\'' +
-      ", lastName='" + lastName + '\'' +
+      ", name='" + name + '\'' +
+      ", nickName='" + nickName + '\'' +
       '}';
   }
 }

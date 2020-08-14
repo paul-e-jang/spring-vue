@@ -18,11 +18,15 @@ public class SimpleUser implements UserDetails, Serializable {
   private UserId userId;
   private String username;
   private String password;
+  private String name;
+  private String nickName;
 
   public SimpleUser(Users user) {
     this.userId = user.getId();
     this.username = user.getUsername();
     this.password = user.getPassword();
+    this.name = user.getName();
+    this.nickName = user.getNickName();
   }
 
   public UserId getUserId() {
@@ -38,8 +42,17 @@ public class SimpleUser implements UserDetails, Serializable {
   public String getUsername() {
     return username;
   }
+    
 
-  @Override
+  public String getName() {
+	return name;
+  }
+
+  public String getNickName() {
+	return nickName;
+  }
+
+@Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
   }
@@ -83,6 +96,8 @@ public class SimpleUser implements UserDetails, Serializable {
       "userId=" + userId +
       ", username='" + username + '\'' +
       ", password=[Protected]" +
+      ", name='" + name + '\'' +
+      ", nickName='" + nickName + '\'' +
       '}';
   }
 }

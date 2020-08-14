@@ -68,7 +68,9 @@ public class UserServiceImpl implements UserService {
 	    Users newUser = registrationManagement.register(
 	      command.getUsername(),
 	      command.getEmailAddress(),
-	      command.getPassword());
+	      command.getPassword(),
+	      command.getname(),
+	      command.getNickName());
 
 	    sendWelcomeMessage(newUser);
 	    domainEventPublisher.publish(new UserRegisteredEvent(newUser, command));

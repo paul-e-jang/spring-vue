@@ -14,7 +14,7 @@
     <v-stepper v-model="stage" vertical id="stepper" class="pa-5">
       <div><img src="../assets/svcLogoWithoutFrames.svg" class="img-fluid pa-3" alt="Logo" width="200" height="50"/></div>
       <v-sheet class="headline" text> 회원 가입 </v-sheet>
-      <div v-show="errorMessage" class="alert alert-danger failed my-4">에러메시지 송출될 곳{{ errorMessage }}</div>
+      <div v-show="errorMessage" class="alert alert-danger failed my-4">{{ errorMessage }}</div>
     <v-stepper-step step="1" :complete="stage > 1">
       Terms of Service
     </v-stepper-step>
@@ -83,7 +83,7 @@
     <v-text-field
             v-model="form.password"
             ref="password"
-            :append-icon="form.passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
+            :append-icon="options.passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
             :rules="valid.password"
             :type="options.passwordShow ? 'text' : 'password'"
             name="input-10-1"
@@ -91,13 +91,12 @@
             placeholder="최소 10글자, 대/소문자 구분"
             counter
             required
-            @click:append="form.passwordShow = !form.passwordShow"
+            @click:append="options.passwordShow = !options.passwordShow"
           />
 
     <v-text-field
-            v-model="form.password2"
             ref="password2"
-            :append-icon="form.passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
+            :append-icon="options.passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
             :rules="valid.password2"
             :type="options.passwordShow ? 'text' : 'password'"
             name="input-10-2"
@@ -105,7 +104,7 @@
             placeholder=" "
             counter
             required
-            @click:append="form.passwordShow = !form.passwordShow"
+            @click:append="options.passwordShow = !options.passwordShow"
           />
   </v-form>
 
@@ -135,10 +134,10 @@
     lazy-validation
   >
     <v-text-field
-      v-model="form.firstName"
-      ref="firstName"
+      v-model="form.name"
+      ref="name"
       :counter="10"
-      :rules="valid.firstName"
+      :rules="valid.name"
       label="이름"
       placeholder="이름을 입력하세요 (최대 10자)"
       required
@@ -146,9 +145,9 @@
     ></v-text-field>
 
     <v-text-field
-      v-model="form.lastName"
-      ref="lastName"
-      :rules="valid.lastName"
+      v-model="form.nickName"
+      ref="nickName"
+      :rules="valid.nickName"
       label="닉네임"
       :counter="10"
       placeholder="닉네임을 입력하세요 (최대 10자)"
@@ -180,7 +179,7 @@
     </v-list-item>
 
       <div class="text--primary px-3">
-        {{ form.firstName }} 님, <img src="../assets/svcLogoWithoutFrames.svg" class="img-fluid mx-2" alt="Logo" width="100" height="50"/>
+        {{ form.name }} 님, <img src="../assets/svcLogoWithoutFrames.svg" class="img-fluid mx-2" alt="Logo" width="100" height="50"/>
          에 가입하신 것을 진심으로 환영합니다. 이제 로그인 후 서비스를 하실 수 있습니다.<br>
          ({{ counter }}초후 자동으로 닫힙니다.)
       </div>
@@ -205,10 +204,9 @@ export default {
       form: {
         username: null,
         password: null,
-        password2: null,
         emailAddress: null,
-        firstName: null,
-        lastName: null
+        name: null,
+        nickName: null
       },
       options: {
         passwordShow: false
@@ -229,10 +227,10 @@ export default {
           v => !!v || '이메일 주소를 입력하세요.',
           v => /.+@.+\..+/.test(v) || '이메일 주소 형식이 맞지 않습니다.'
         ],
-        firstName: [
+        name: [
           v => !!v || '이름을 입력하세요.'
         ],
-        lastName: [
+        nickName: [
           v => !!v || '닉네임을 입력하세요.'
         ]
       }
@@ -241,14 +239,14 @@ export default {
   computed: {
     form1OK () {
       let ok = false
-      if (this.form.username && this.form.password && this.form.password2 && this.form.emailAddress) {
+      if (this.form.username && this.form.password && this.form.emailAddress) {
         ok = true
       }
       return ok
     },
     form2OK () {
       let ok = false
-      if (this.form.firstName && this.form.lastName) {
+      if (this.form.name && this.form.nickName) {
         ok = true
       }
       return ok
@@ -261,13 +259,14 @@ export default {
       this.$refs.password2.validate() &&
       this.$refs.emailAddress.validate()) {
         this.stage = 3
-      } else if (this.stage === 3 && this.$refs.firstName.validate() && this.$refs.lastName.validate()) {
+      } else if (this.stage === 3 && this.$refs.name.validate() && this.$refs.nickName.validate()) {
         this.stage = 4
-          registrationService.register(this.form).then(() => {
-        this.$router.push({ name: 'LoginPage' })
-      }).catch((error) => {
-        this.errorMessage = 'Failed to register user. ' + error.message
-      })
+        registrationService.register(this.form).then(() => {
+          this.$router.push({ name: 'LoginPage' })
+        }).catch((error) => {
+          this.errorMessage = 'Failed to register user. ' + error.message
+          this.stage = 2
+        })
         this.countDown()
       }
     },
