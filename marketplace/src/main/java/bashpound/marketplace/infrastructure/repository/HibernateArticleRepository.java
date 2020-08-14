@@ -44,7 +44,7 @@ public class HibernateArticleRepository extends HibernateSupport implements Arti
 
   @Override
   public void updateReplies(Long id, int i) throws ExecuteUpdateException {
-	  String sql = "update article set viewed=viewed+:i where id = :id ";
+	  String sql = "update article set replies=:i where id = :id ";
 	  NativeQuery<Article> query = getSession().createNativeQuery(sql, Article.class);
 	  query.setParameter("id", id);
 	  query.setParameter("i", i);
@@ -53,7 +53,7 @@ public class HibernateArticleRepository extends HibernateSupport implements Arti
 
   @Override
   public void updateViews(Long id, int i) throws ExecuteUpdateException {
-	  String sql = "update article set replies=replies+:i where id = :id ";
+	  String sql = "update article set viewed=viewed+:i where id = :id ";
 	  NativeQuery<Article> query = getSession().createNativeQuery(sql, Article.class);
 	  query.setParameter("id", id);
 	  query.setParameter("i", i);

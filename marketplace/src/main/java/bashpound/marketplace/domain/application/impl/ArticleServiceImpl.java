@@ -60,15 +60,15 @@ public class ArticleServiceImpl implements ArticleService {
 	      );
 		}
 
-	  @Override
-	  public List<Article> findByBoardName(String boardname) throws ArticleLoadException{
+	 @Override
+	 public List<Article> findByBoardName(String boardname) throws ArticleLoadException{
 		return articleRepository.findByBoardName(boardname);
-	  }
+	 }
 
-	  @Override
-	  public List<Reply> findRepliesByArticleCode(Long id) throws ArticleLoadException {
+	 @Override
+	 public List<Reply> findRepliesByArticleCode(Long id) throws ArticleLoadException {
 		return replyRepository.findByArticleCode(id);
-	  }
+	 }
 
 	@Override
 	public void updateReplies(Long id, int i) throws ExecuteUpdateException {

@@ -53,9 +53,9 @@ export default {
       })
     })
   },
-  repliesUpdate (id, how) {
+  repliesUpdate (id, i) {
     return new Promise((resolve, reject) => {
-      axios.post('/reply/' + id + '/' + how).then(({ data }) => {
+      axios.post('/reply/' + id + '/' + i).then(({ data }) => {
         resolve(data)
       }).catch((error) => {
         reject(errorParser.parse(error))

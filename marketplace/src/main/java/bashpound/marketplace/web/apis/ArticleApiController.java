@@ -75,16 +75,26 @@ public class ArticleApiController extends AbstractBaseController{
 	}
 	
 	@PostMapping("/api/view/{id}/{how}")
-	public void viewUpdate(@PathVariable("id") Long id, @PathVariable("how") String how)
-			throws ExecuteUpdateException, ArticleRegistrationException {
-
-      service.updateViews(id, parseHow(how));
+	public ResponseEntity<ApiResult> viewUpdate(@PathVariable("id") Long id, @PathVariable("how") String how) {
+    	  try{
+    		  service.updateViews(id, parseHow(how));
+    		  return Result.ok();
+    	  }catch (ExecuteUpdateException e) {
+    		  String errorMessage = "조회수 업데이트에 실패하였습니다.";
+    		  return Result.failure(errorMessage);
+    	  }
+    	  
 	}
 	
-	@PostMapping("/api/reply/{id}/{how}")
-	public void replyUpdate(@PathVariable("id") Long id, @PathVariable("how") String how)
-			throws ExecuteUpdateException, ArticleRegistrationException {
-      service.updateReplies(id, parseHow(how));
+	@PostMapping("/api/reply/{id}/{i}")
+	public ResponseEntity<ApiResult> replyUpdate(@PathVariable("id") Long id, @PathVariable("i") int i) {
+      try {
+    	  service.updateReplies(id, i);
+    	  return Result.ok();
+      }catch (ExecuteUpdateException e) {
+    	  String erroeMessage = "댓글 수 업데이트에 실패하였습니다.";
+    	  return Result.failure(erroeMessage);
+      }
 	}
 	
 	public static int parseHow(String how) {

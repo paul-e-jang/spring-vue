@@ -122,6 +122,7 @@ export default {
       this.re.articleId = this.selected.id
       console.log(this.selected)
       BoardService.viewedUpdate(this.re.articleId, 'pp')
+      BoardService.repliesUpdate(this.re.articleId, this.replies.length)
       BoardService.fetchReplies(this.re.articleId)
       this.$bus.$on('replyLoad', data => {
         this.replies = data.replies
@@ -130,9 +131,9 @@ export default {
     writeReply () {
       BoardService.writeReply(this.re)
         .then(() => {
-          BoardService.repliesUpdate(this.re.articleId, 'pp')
           BoardService.fetchReplies(this.re.articleId)
           this.re.content = ''
+          BoardService.repliesUpdate(this.re.articleId, this.replies.length)
         })
         .catch((error) => {
           this.errorMessage = '댓글 등록에 실패했습니다.' + error.message
