@@ -35,6 +35,7 @@ const routes = [
   },
   {
     path: '/logout',
+    name: 'Logout',
     beforeEnter: function (to, from, next) {
       next('/')
     }
@@ -45,6 +46,7 @@ const routes = [
   },
   {
     path: '/BoardView',
+    name: 'BoardView',
     component: BoardView
   },
   {

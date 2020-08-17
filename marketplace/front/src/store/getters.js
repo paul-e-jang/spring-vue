@@ -6,6 +6,8 @@ export const hasBoards = state => {
   return state.boards.length > 0
 }
 
+export const launched = state => state.launched
+
 export const personalBoards = state => {
   return state.boards.filter(board => board.teamId === 0)
 }

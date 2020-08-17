@@ -12,7 +12,8 @@ const state = {
     name: 'GUEST',
     authenticated: false,
     usercode: '0'
-  }
+  },
+  launched: false
 }
 
 export default new Vuex.Store({

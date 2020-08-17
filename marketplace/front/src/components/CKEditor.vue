@@ -24,6 +24,6 @@ export default {
 
 <style>
 .ck-editor__editable {
-       min-height: 500px;
+  min-height: 500px;
 }
 </style>

@@ -1,23 +1,21 @@
 <template>
-  <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="600">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
           v-bind="attrs"
           v-on="on"
-          text
+          icon
+          dark
         >
-          회원가입
+          <v-icon> mdi-account-plus </v-icon>
         </v-btn>
       </template>
 
     <v-stepper v-model="stage" vertical id="stepper" class="pa-5">
-      <div><img src="../assets/svcLogoWithoutFrames.svg" class="img-fluid pa-3" alt="Logo" width="200" height="50"/></div>
-      <v-sheet class="headline mb-2" text> 회원 가입 </v-sheet>
+      <div class="text-center"><img src="../assets/svcLogoWithoutFrames.svg" class="img-fluid pa-3" alt="Logo" width="200" height="50"/></div>
+      <v-sheet class="headline mb-2 text-center"> 회원 가입 </v-sheet>
           <v-alert
           v-show="errorMessage"
-      border="left"
-      colored-border
       type="error"
       dense
       outlined
@@ -48,8 +46,10 @@
       </div>
 
   </v-card-text>
+    <v-sheet class="text-center">
       <v-btn color="primary" @click="stage = 2" outlined class="mr-2">동의</v-btn>
       <v-btn color="grey darken-1" @click="dialog=false, stage = 1" outlined>비동의</v-btn>
+    </v-sheet>
     </v-stepper-content>
 
     <v-stepper-step step="2" :complete="stage > 2">ID/Password</v-stepper-step>
@@ -78,7 +78,6 @@
       placeholder="6글자 이상, 영문 대/소문자 및 숫자"
       required
       maxlength="20"
-      @blur="errorMessage=null, check(username, form.username)"
     ></v-text-field>
 
     <v-text-field
@@ -88,7 +87,6 @@
       label="E-mail"
       placeholder=" "
       required
-      @blur="check(emailAddress, form.emailAddress)"
     ></v-text-field>
 
     <v-text-field
@@ -120,9 +118,10 @@
   </v-form>
 
       </v-card>
-
+    <v-sheet class="text-center">
       <v-btn color="primary" @click="submit" outlined :disabled="!form1OK" class="mr-2">확인</v-btn>
-      <v-btn color="grey darken-1" @click="dialog=false, stage = 1" outlined>취소</v-btn>
+      <v-btn color="grey darken-1" @click="dialog=false, stage = 1, clear()" outlined>취소</v-btn>
+    </v-sheet>
     </v-stepper-content>
 
     <v-stepper-step step="3" :complete="stage > 3">
@@ -169,9 +168,11 @@
   </v-form>
 
       </v-card>
+      <v-sheet class="text-center">
       <v-btn color="primary" @click="stage = 2" outlined class="mr-2">이전</v-btn>
       <v-btn color="primary" @click="submit" outlined :disabled="!form2OK" class="mr-2">다음</v-btn>
       <v-btn color="grey darken-1" @click="dialog=false, stage = 1" outlined>취소</v-btn>
+      </v-sheet>
     </v-stepper-content>
 
     <v-stepper-step step="4" :complete="stage >= 4">Validation</v-stepper-step>
@@ -196,11 +197,10 @@
       </div>
 
   </v-card-text>
-      <v-btn color="grey darken-1" @click="dialog=false, stage = 1, this.$refs.form.reset()" outlined>창 닫기</v-btn>
+      <v-btn color="grey darken-1" @click="dialog=false, stage = 1, clear" outlined>창 닫기</v-btn>
     </v-stepper-content>
   </v-stepper>
     </v-dialog>
-  </v-row>
 </template>
 
 <script>
@@ -274,6 +274,7 @@ export default {
         console.log(this.form)
         registrationService.register(this.form).then(() => {
           this.stage = 4
+          this.clear()
           this.countDown()
         }).catch((error) => {
           this.errorMessage = '유저 등록에 실패했습니다. ' + error.message
@@ -291,15 +292,18 @@ export default {
         this.dialog = false
         this.stage = 1
         this.counter = 5
-        this.$refs.form.reset()
-        this.$refs.form2.reset()
+        this.clear()
       }
     },
     check (param, value) {
       registrationService.checkAlready(param, value)
-        this.$bus.$on('alreadyExists', data => {
+      this.$bus.$on('alreadyExists', data => {
         return data.paramAlreadyExists
       })
+    },
+    clear () {
+      this.$refs.form.reset()
+      this.$refs.form2.reset()
     }
   }
 }

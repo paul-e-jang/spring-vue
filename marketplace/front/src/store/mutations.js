@@ -8,5 +8,9 @@ export default {
     state.user.name = 'GUEST'
     state.user.authenticated = false
     state.user.usercode = 0
+  },
+  launch (state, param) {
+    state.launched = param
   }
+
 }
