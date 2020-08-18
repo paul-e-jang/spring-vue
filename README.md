@@ -24,9 +24,9 @@
   
   + Database : Ojdbc6 XE 
   + Presentation Layer: Node.js (12.18.0)
-  + - Design: (Vue.js)@vue/cli 4.4.6, BootstrapVue(4.5.1), SCSS, inline CSS
+  + Design: (Vue.js)@vue/cli 4.4.6, BootstrapVue(4.5.1), SCSS, inline CSS
   + Business Logic Layer : Embedded Tomcat on springBoot
-  + - Http proxy: Axios
+  + Http proxy: Axios
   + Communication ports: 3000(Front/Client)<->8090(Back/Server)
   + Spring Dependencies: JPA, Web, DevTools, Thymeleaf(?maybe), RESTful, Security, Transaction(?maybe), Oauth2, Social(?maybe)
   + Build: Maven 3.6.3
