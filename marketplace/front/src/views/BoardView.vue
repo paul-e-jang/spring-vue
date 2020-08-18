@@ -34,7 +34,7 @@
                     <span v-if="item.replies">[{{ item.replies }}]</span>
                   </td>
                   <td>{{ item.author }}</td>
-                  <td>{{ item.createdDate }}</td>
+                  <td>{{ dateConvert(item.createdDate) }}</td>
                   <td>{{ item.viewed }}</td>
                 </tr>
               </tbody>
