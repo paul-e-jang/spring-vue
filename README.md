@@ -5,7 +5,7 @@
   + 스프링 부트 2.0/Vue.js (+ Router)로 구현한 반응형 싱글 페이지 쇼핑몰 어플리케이션
   + Oauth2(SNS로그인) 지원
   + JSON API 및 데이터 크롤링 기능 지원(예정)
-  + Header / Router-view / Footer 로 직관적 페이지 구성
+  + 이메일 인증 지원(예정)
 
 + ## 개발 원칙 (Dev principles)
   + Spring MVC는 오직 파싱 대상 JSON dataset만 반환한다. (RESTful)
@@ -42,4 +42,3 @@
   + JSON Oauth2 --> Spring Social 로 정식 build
 
 ## bashpound: 장은학(Jang Eunhack) / eunhackjang@gmail.com
-### github에서는 소스보기만 가능합니다. 작동 및 참여를 원하는분은 이메일로 문의 주세요.
