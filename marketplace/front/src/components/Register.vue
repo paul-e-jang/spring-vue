@@ -191,7 +191,7 @@
     </v-list-item>
 
       <div class="text--primary px-3">
-        {{ form.username }} 님, <img src="../assets/svcLogoWithoutFrames.svg" class="img-fluid mx-2" alt="Logo" width="100" height="50"/>
+        <img src="../assets/svcLogoWithoutFrames.svg" class="img-fluid mx-2" alt="Logo" width="100" height="50"/>
          에 가입하신 것을 진심으로 환영합니다. 이제 로그인 후 서비스를 하실 수 있습니다.<br>
          ({{ counter }}초후 자동으로 닫힙니다.)
       </div>
