@@ -18,6 +18,4 @@ public interface ReplyRepository {
    * @param board the board to save
    */
   void save(Reply articleReply);
- 
-  
 }

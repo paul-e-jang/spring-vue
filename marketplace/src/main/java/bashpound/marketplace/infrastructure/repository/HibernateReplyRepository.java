@@ -28,7 +28,7 @@ public class HibernateReplyRepository extends HibernateSupport implements ReplyR
 
   @Override
   public List<Reply> findByArticleCode(Long id) {    
-	String sql = "select * from reply where articleid = :articleid order by createddate desc";
+	String sql = "select * from reply where articleid = :articleid";
 	NativeQuery<Reply> query = getSession().createNativeQuery(sql, Reply.class);
     query.setParameter("articleid", id);
     return query.list();
