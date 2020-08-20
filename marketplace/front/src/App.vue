@@ -114,6 +114,9 @@ import AppMenu from '@/components/AppMenu'
 import Avatar from '@/components/Avatar'
 
 export default {
+  created () {
+    document.title = 'Projects'
+  },
   props: {
     source: String
   },
