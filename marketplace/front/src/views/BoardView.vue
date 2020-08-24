@@ -1,7 +1,6 @@
 <template>
   <v-sheet>
     <v-row justify="center" class="d-flex align-stretch">
-      <draggable>
       <v-col cols="10" v-show="!articleView">
         <v-card id="boardlist" outlined class="pa-5 rounded-0">
           <v-card-title>
@@ -46,8 +45,6 @@
           </v-data-table>
         </v-card>
       </v-col>
-      </draggable>
-      <draggable>
       <v-col cols="10" v-show="articleView">
         <v-card class="mx-auto pa-5 rounded-0" id="boardview" outlined >
           <div class="text-right">[DEBUG] Seleted id: {{ selected.id }} <v-btn icon @click="articleView=false"> <v-icon> {{ mdiDelete }} </v-icon> </v-btn></div>
@@ -108,7 +105,6 @@
           </form>
         </v-card>
       </v-col>
-      </draggable>
     </v-row>
   </v-sheet>
 </template>
@@ -116,13 +112,11 @@
 <script>
 import BoardService from '@/services/article'
 import DateParser from '@/utils/date-parser'
-import draggable from 'vuedraggable'
 import { mdiDelete } from '@mdi/js'
 
 export default {
   name: 'BoardView',
   components: {
-    draggable
   },
   created () {
     this.Fetch()
