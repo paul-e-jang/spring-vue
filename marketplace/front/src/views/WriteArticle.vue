@@ -78,6 +78,7 @@ import ArticleService from '@/services/article'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import Vue from 'vue'
 import CKEditor from '@ckeditor/ckeditor5-vue'
+import UploadAdapter from '@/utils/upload-adapter'
 
 Vue.use(CKEditor)
 
@@ -94,7 +95,8 @@ export default {
       errorMessage: '',
       editor: ClassicEditor,
       editorConfig: {
-        height: '500px'
+        height: '500px',
+        extraPlugins: [this.MyCustomUploadAdapterPlugin]
       },
       warn: false,
       rules: [
@@ -120,6 +122,11 @@ export default {
     },
     goBack () {
       this.$router.go(-1)
+    },
+    MyCustomUploadAdapterPlugin (editor) {
+      editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+        return new UploadAdapter(loader)
+      }
     }
   },
   validations: {

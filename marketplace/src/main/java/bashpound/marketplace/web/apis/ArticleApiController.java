@@ -9,14 +9,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import bashpound.marketplace.domain.application.ArticleService;
+import bashpound.marketplace.domain.application.FileService;
 import bashpound.marketplace.domain.model.article.ArticleLoadException;
 import bashpound.marketplace.domain.model.article.ArticleRegistrationException;
 import bashpound.marketplace.domain.model.article.Articles;
 import bashpound.marketplace.domain.model.article.ExecuteUpdateException;
 import bashpound.marketplace.domain.model.article.Replies;
+import bashpound.marketplace.infrastructure.file.FileStorageException;
 import bashpound.marketplace.web.payload.WrtieArticlePayload;
 import bashpound.marketplace.web.payload.WrtieReplyPayload;
 import bashpound.marketplace.web.results.ApiResult;
@@ -27,6 +31,7 @@ import bashpound.marketplace.web.results.Result;
 public class ArticleApiController extends AbstractBaseController{
 	
 	ArticleService service;
+	FileService fileService;
 	
 	public ArticleApiController(ArticleService articleService) {
 		super();
@@ -96,6 +101,18 @@ public class ArticleApiController extends AbstractBaseController{
     	  return Result.failure(erroeMessage);
       }
 	}
+	
+	@PostMapping("/api/upload")
+    public String fileUpload(@RequestParam("upload") MultipartFile file) {
+
+  	  try{
+  		  fileService.fileUpload(file);
+		  return "OK";
+	  }catch (FileStorageException e) {
+		  String errorMessage = "파일 업로드에 실패하였습니다.";
+		  return "errorMessage";
+	  }
+    }
 	
 	public static int parseHow(String how) {
 		int i;
