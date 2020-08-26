@@ -28,10 +28,7 @@ public class FileServiceImpl {
 	        // Spring에서 제공하는 cleanPath()를 통해서 ../ 내부 점들에 대해서 사용을 억제한다
 	        Path copyOfLocation = Paths.get(uploadDir + File.separator + StringUtils.cleanPath(multipartFile.getOriginalFilename()));
 	        try {
-	            // inputStream을 가져와서
-	            // copyOfLocation (저장위치)로 파일을 쓴다.
-	            // copy의 옵션은 기존에 존재하면 REPLACE(대체한다), 오버라이딩 한다
-	            Files.copy(multipartFile.getInputStream(), copyOfLocation, StandardCopyOption.REPLACE_EXISTING);
+	        	multipartFile.transferTo(copyOfLocation);
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	            throw new FileStorageException("Could not store file : " + multipartFile.getOriginalFilename());

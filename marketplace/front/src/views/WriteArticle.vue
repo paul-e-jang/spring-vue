@@ -96,13 +96,17 @@ export default {
       editor: ClassicEditor,
       editorConfig: {
         height: '500px',
-        extraPlugins: [this.MyCustomUploadAdapterPlugin]
+        extraPlugins: [this.MyCustomUploadAdapterPlugin],
+        language: 'ko'
       },
       warn: false,
       rules: [
         value => !value || value.size < 2000000 || 'Avatar size should be less than 2 MB!'
       ]
     }
+  },
+  components: {
+    ckeditor: CKEditor.component
   },
   methods: {
     submitForm () {

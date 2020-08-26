@@ -103,14 +103,14 @@ public class ArticleApiController extends AbstractBaseController{
 	}
 	
 	@PostMapping("/api/upload")
-    public String fileUpload(@RequestParam("upload") MultipartFile file) {
+    public ResponseEntity<ApiResult> fileUpload(@RequestParam("upload") MultipartFile file) {
 
   	  try{
   		  fileService.fileUpload(file);
-		  return "OK";
+		  return Result.ok("OK");
 	  }catch (FileStorageException e) {
 		  String errorMessage = "파일 업로드에 실패하였습니다.";
-		  return "errorMessage";
+		  return Result.failure(errorMessage);
 	  }
     }
 	
