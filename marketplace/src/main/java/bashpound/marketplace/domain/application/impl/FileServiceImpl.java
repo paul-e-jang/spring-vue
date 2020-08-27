@@ -2,38 +2,23 @@ package bashpound.marketplace.domain.application.impl;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import bashpound.marketplace.infrastructure.file.FileStorageException;
 
-
+@Service
 public class FileServiceImpl {
-	@Service
-	public class FileService {
+	
+    @Value("${app.uploadDir:${user.home}}")
+    private String uploadDir;
 
-	    // application.properties 에 app.upload.dir을 정의하고, 없는 경우에 default 값으로 user.home (System에 종속적인)
-	    @Value("${app.uploadDir:${user.home}}")
-	    private String uploadDir;
+    public void fileUpload(MultipartFile file) throws Exception {
+    	
 
-	    public void fileUpload(MultipartFile multipartFile) throws Exception {
-	        // File.seperator 는 OS종속적이다.
-	        // Spring에서 제공하는 cleanPath()를 통해서 ../ 내부 점들에 대해서 사용을 억제한다
-	        Path copyOfLocation = Paths.get(uploadDir + File.separator + StringUtils.cleanPath(multipartFile.getOriginalFilename()));
-	        try {
-	        	multipartFile.transferTo(copyOfLocation);
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	            throw new FileStorageException("Could not store file : " + multipartFile.getOriginalFilename());
-	        }
-
-	    }
-	}
+         
+    	}
 }
+

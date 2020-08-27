@@ -149,7 +149,7 @@ export default {
   box-shadow: inset 0
    0px 0px rgba(0, 0, 0, 0.075), 0 0 0px rgba(255, 0, 0, 0.6);
 }
-.ck-editor__editable {
+.ck-editor__editable_inline {
     min-height: 500px;
 }
 </style>

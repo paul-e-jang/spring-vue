@@ -8,6 +8,7 @@ export default class UploadAdapter {
       .then(file => new Promise((resolve, reject) => {
         this._initRequest()
         this._initListeners(resolve, reject, file)
+        console.log(file)
         this._sendRequest(file)
       }))
   }
@@ -38,6 +39,7 @@ export default class UploadAdapter {
       const response = xhr.response
 
       if (!response || response.error) {
+        console.log(response.url)
         return reject(response && response.error ? response.error.message : genericErrorText)
       }
       resolve({

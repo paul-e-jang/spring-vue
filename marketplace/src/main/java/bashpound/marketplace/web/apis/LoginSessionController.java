@@ -25,7 +25,7 @@ public class LoginSessionController {
             model.addAttribute("authenticated", true);
     	}
         
-        return "jsonmembertemplate";
+        return "toJson";
     }
 
 }

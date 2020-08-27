@@ -14,7 +14,7 @@ public class MarketplaceApplication {
   }
   
   @Bean
-  public View jsonmembertemplate() {
+  public View toJson() {
       MappingJackson2JsonView view = new MappingJackson2JsonView();
       view.setPrettyPrint(true);
       return view;
