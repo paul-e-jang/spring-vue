@@ -10,10 +10,13 @@ import Vuelidate from 'vuelidate'
 import eventBus from './event-bus'
 import '@babel/polyfill'
 
+import CKEditor from '@ckeditor/ckeditor5-vue'
+
 // axios bootstrap
 
 Vue.use(Vuelidate)
 Vue.use(Vuetify)
+Vue.use(CKEditor)
 
 export default new Vuetify({
   icons: {

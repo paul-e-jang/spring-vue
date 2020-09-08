@@ -75,12 +75,23 @@
 <script>
 import { required, maxLength } from 'vuelidate/lib/validators'
 import ArticleService from '@/services/article'
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-import Vue from 'vue'
-import CKEditor from '@ckeditor/ckeditor5-vue'
-import UploadAdapter from '@/utils/upload-adapter'
+import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor'
 
-Vue.use(CKEditor)
+import EssentialsPlugin from '@ckeditor/ckeditor5-essentials/src/essentials'
+import HeadingPlugin from '@ckeditor/ckeditor5-heading/src/heading'
+import BoldPlugin from '@ckeditor/ckeditor5-basic-styles/src/bold'
+import ItalicPlugin from '@ckeditor/ckeditor5-basic-styles/src/italic'
+import LinkPlugin from '@ckeditor/ckeditor5-link/src/link'
+import ParagraphPlugin from '@ckeditor/ckeditor5-paragraph/src/paragraph'
+
+import ImagePlugin from '@ckeditor/ckeditor5-image/src/image'
+import ImageCaptionPlugin from '@ckeditor/ckeditor5-image/src/imagecaption'
+import ImageStylePlugin from '@ckeditor/ckeditor5-image/src/imagestyle'
+import ImageToolbarPlugin from '@ckeditor/ckeditor5-image/src/imagetoolbar'
+import ImageUploadPlugin from '@ckeditor/ckeditor5-image/src/imageupload'
+
+import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter'
+// import UploadAdapter from '@/utils/upload-adapter'
 
 export default {
   name: 'WriteArticle',
@@ -96,17 +107,47 @@ export default {
       editor: ClassicEditor,
       editorConfig: {
         height: '500px',
-        extraPlugins: [this.MyCustomUploadAdapterPlugin],
-        language: 'ko'
+        plugins: [
+          EssentialsPlugin,
+          HeadingPlugin,
+          BoldPlugin,
+          ItalicPlugin,
+          LinkPlugin,
+          ParagraphPlugin,
+          Base64UploadAdapter,
+          ImagePlugin,
+          ImageCaptionPlugin,
+          ImageStylePlugin,
+          ImageToolbarPlugin,
+          ImageUploadPlugin,
+          Base64UploadAdapter
+        ],
+        toolbar: {
+          items: [
+            'heading',
+            '|',
+            'bold',
+            'italic',
+            'link',
+            'undo',
+            'redo',
+            'imageUpload'
+          ]
+        },
+        image: {
+          toolbar: [
+            'imageStyle:full',
+            'imageStyle:side',
+            '|',
+            'imageTextAlternative'
+          ]
+        }
       },
       warn: false,
       rules: [
         value => !value || value.size < 2000000 || 'Avatar size should be less than 2 MB!'
       ]
     }
-  },
-  components: {
-    ckeditor: CKEditor.component
   },
   methods: {
     submitForm () {
@@ -126,12 +167,12 @@ export default {
     },
     goBack () {
       this.$router.go(-1)
-    },
-    MyCustomUploadAdapterPlugin (editor) {
+    }
+    /* MyCustomUploadAdapterPlugin (editor) {
       editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
         return new UploadAdapter(loader)
       }
-    }
+    } */
   },
   validations: {
     form: {

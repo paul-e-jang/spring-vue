@@ -23,22 +23,23 @@ public class ApplicationProperties {
   
   @NotNull
   private String uploadDir;
+  
 
-  public void setMailFrom(String mailFrom) {
-    this.mailFrom = mailFrom;
-  }
-
-  public String getMailFrom() {
-    return mailFrom;
-  }
-
-public String getUploadDir() {
+  public String getUploadDir() {
 	return uploadDir;
 }
 
 public void setUploadDir(String uploadDir) {
 	this.uploadDir = uploadDir;
 }
+
+public void setMailFrom(String mailFrom) {
+    this.mailFrom = mailFrom;
+  }
+
+  public String getMailFrom() {
+    return mailFrom;
+  }
   
 
 }

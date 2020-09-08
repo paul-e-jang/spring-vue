@@ -26,6 +26,7 @@ public class Article extends AbstractBaseEntity {
   private String author;
   
   @Column(name = "content")
+  @Lob
   private String content;
 
   @Temporal(TemporalType.TIMESTAMP)
