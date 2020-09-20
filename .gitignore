@@ -1,7 +1,5 @@
 marketplace/front/node_modules
 marketplace/front/dist
-marketplace/front/package.json
-marketplace/front/package-lock.json
 marketplace/mvnw
 marketplace/mvnw.cmd
 marketplace/target
